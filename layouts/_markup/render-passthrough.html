@@ -1,0 +1,11 @@
+{{- /* $$…$$ / \[…\] (블록), $…$ / \(…\) (인라인) 수식을 빌드 시 KaTeX HTML로 렌더링.
+       브라우저에서 JS 실행 불필요, CSS만 있으면 됨 (extend_head.html) */ -}}
+{{- $opts := dict "displayMode" (eq .Type "block") "output" "htmlAndMathml" "throwOnError" false -}}
+{{- with try (transform.ToMath .Inner $opts) }}
+  {{- with .Err }}
+    {{- errorf "수식 렌더링 실패 (%s): %s — 원문: %q" $.Position . $.Inner }}
+  {{- else }}
+    {{- .Value }}
+    {{- $.Page.Store.Set "hasMath" true }}
+  {{- end }}
+{{- end -}}

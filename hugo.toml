@@ -1,0 +1,144 @@
+baseURL = "https://mkpong.github.io/"
+locale = "ko-kr"   # Hugo 0.158+ (구 languageCode)
+defaultContentLanguage = "ko"
+title = "Jaeyoung Tech"
+theme = "PaperMod"
+
+# 한국어(CJK) 본문 글자 수 / 요약 길이 계산을 정확하게
+hasCJKLanguage = true
+timeZone = "Asia/Seoul"
+enableRobotsTXT = true
+enableEmoji = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[pagination]
+  pagerSize = 10
+
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+# JSON 출력은 PaperMod 검색(Fuse.js)이 읽는 index.json 생성용
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[params]
+  env = "production"
+  description = "AI 인프라를 공부하는 대학원생의 기술 블로그"
+  author = "Jaeyoung"
+  keywords = ["AI Infra", "MLOps", "GPU", "분산학습", "Kubernetes"]
+  defaultTheme = "auto"
+  disableThemeToggle = false
+
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowToc = true
+  TocOpen = false
+  hidemeta = false
+  hideSummary = false
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+
+  # 사이트 전체에서 KaTeX CSS를 항상 로드하려면 true.
+  # false면 글 front matter의 `math: true` 또는 수식 감지 시에만 로드.
+  math = false
+
+  [params.assets]
+    # highlight.js 대신 Hugo 내장 Chroma 사용 (빌드 시 하이라이팅, JS 불필요)
+    disableHLJS = true
+    disableFingerprinting = false
+
+  [params.label]
+    text = "Jaeyoung Tech"
+
+  [params.homeInfoParams]
+    Title = "Jaeyoung Tech 👋"
+    Content = """
+AI 인프라 분야를 공부하는 대학원생의 기술 블로그입니다.
+GPU 클러스터, 분산 학습, 모델 서빙, MLOps에 대해 배우고 겪은 것을 한국어로 정리합니다.
+"""
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/mkpong"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  [params.editPost]
+    URL = "https://github.com/mkpong/mkpong.github.io/tree/main/content"
+    Text = "수정 제안"
+    appendFilePath = true
+
+  # Fuse.js 검색 옵션
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    limit = 20
+    keys = ["title", "permalink", "summary", "content"]
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "글"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "태그"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "archives"
+    name = "아카이브"
+    url = "/archives/"
+    weight = 30
+  [[menu.main]]
+    identifier = "search"
+    name = "검색"
+    url = "/search/"
+    weight = 40
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      # KaTeX 수식: 마크다운 파서가 수식 구간을 건드리지 않게 통과시킴
+      # → layouts/_markup/render-passthrough.html 에서 transform.ToMath 로 빌드 시 렌더링
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
+
+  [markup.highlight]
+    # noClasses=false → 인라인 style 대신 CSS 클래스 사용 (PaperMod가 chroma 스타일 제공)
+    noClasses = false
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+    lineNumbersInTable = true
+    tabWidth = 4
+
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false

@@ -1,0 +1,76 @@
+/* ---------------------------------------------------------------
+   한글 타이포그래피
+   Pretendard 웹폰트 자체는 layouts/_partials/extend_head.html 에서 <link>로 로드.
+   (이 파일은 테마 CSS 뒤에 병합되므로 @import 를 쓰면 무시됨)
+   --------------------------------------------------------------- */
+:root {
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    "D2Coding", monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  /* 한글 단어 중간에서 줄이 끊기지 않도록 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.post-content {
+  line-height: 1.7;
+}
+
+.post-content p {
+  margin-bottom: 1.25em;
+}
+
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.entry-header h2 {
+  line-height: 1.4;
+  word-break: keep-all;
+  letter-spacing: -0.02em;
+}
+
+.post-content li + li {
+  margin-top: 0.3em;
+}
+
+/* 코드는 keep-all 영향 제외 */
+code, kbd, pre, samp {
+  font-family: var(--font-mono);
+  word-break: normal;
+}
+
+.post-content pre code {
+  line-height: 1.6;
+}
+
+/* Mermaid */
+.post-content .mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  background: transparent;
+}
+
+.post-content .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* KaTeX — 긴 블록 수식은 가로 스크롤 */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+.katex {
+  font-size: 1.05em;
+}

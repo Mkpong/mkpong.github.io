@@ -1,0 +1,5 @@
+{{- /* ```mermaid 코드 펜스를 <pre class="mermaid">로 변환. 실제 렌더링은 extend_footer.html */ -}}
+<pre class="mermaid">
+{{- .Inner | htmlEscape | safeHTML }}
+</pre>
+{{- .Page.Store.Set "hasMermaid" true }}
