@@ -69,8 +69,9 @@ Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른
 | `/about/` | 소개, 관심 분야, 이력 타임라인, 기술 스택, 연락처 | `content/about/index.md` |
 | `/posts/` | 글 목록 | `content/posts/` |
 | `/categories/`, `/tags/`, `/series/` | 분류 페이지 | 글 front matter 의 `categories` / `tags` / `series` |
-| `/archives/` | 연·월별 목록 | `content/archives.md` |
+| `/archives/` | 연·월별 목록 (한국어 월 표기) | `content/archives.md`, `layouts/archives.html` |
 | `/search/` | 검색 (Fuse.js, `index.json` 기반) | `content/search.md`, `hugo.toml` 의 `[params.fuseOpts]` |
+| 글 페이지 | 1300px 이상에서 오른쪽 고정 목차(현재 섹션 강조), 상단 읽기 진행 바, 작성일·수정일·읽는 시간, 이전/다음 글 | `layouts/_partials/extend_footer.html`(스크립트), `post_meta.html`, `post_nav_links.html`, CSS 는 `site.css` |
 | 글 하단 | 시리즈 내비게이션, 함께 읽기(관련 글), 댓글(giscus) | `layouts/_partials/extend_post_content.html`, `comments.html` |
 | 404 | 홈/검색/아카이브로 안내 | `layouts/404.html` |
 
@@ -128,6 +129,7 @@ Front matter 주요 항목:
 | `showToc` | 목차 표시 |
 | `math` | `true` 면 KaTeX CSS 로드 (수식이 감지되면 자동으로도 로드되지만 명시하는 편이 안전) |
 | `hiddenInHomeList` | `true` 면 홈 "최근 글"에서 제외 |
+| `lastmod` | 보통 생략. `enableGitInfo` 로 파일의 마지막 커밋 시각이 자동으로 쓰이며, 작성일보다 하루 이상 뒤면 "수정 …" 으로 표시됨 |
 
 시리즈에 설명을 붙이려면 `content/series/<시리즈명>/_index.md` 를 만들고 `description` 을 적는다. 홈의 시리즈 카드에 표시된다.
 
@@ -167,20 +169,23 @@ Front matter 주요 항목:
 │   ├── typography.css                 # 한글 타이포그래피 (Pretendard, keep-all, line-height 1.7)
 │   └── site.css                       # 2단 레이아웃, 사이드바, 글 목록, 시리즈, 타임라인, 함께 읽기, 404
 ├── layouts/
-│   ├── baseof.html                    # 테마 baseof 오버라이드: 사이드바 + 본문 2단 레이아웃
+│   ├── baseof.html                    # 테마 baseof 오버라이드: 사이드바 + 본문 2단 레이아웃, 본문 건너뛰기 링크, 푸터 캐시 해제
+│   ├── archives.html                  # 테마 오버라이드: 월 표기 한글화
 │   ├── home.html                      # 홈 (글 목록)
 │   ├── 404.html
 │   ├── _partials/
 │   │   ├── sidebar.html               # 왼쪽 사이드바 (프로필·카테고리·시리즈·태그)
 │   │   ├── extend_head.html           # Pretendard 폰트, KaTeX CSS 로드
-│   │   ├── extend_footer.html         # Mermaid 로더 (다크 모드 대응)
+│   │   ├── extend_footer.html         # Mermaid 로더, 읽기 진행 바, 목차 현재 섹션 강조
 │   │   ├── extend_post_content.html   # 시리즈 내비게이션, 함께 읽기
+│   │   ├── post_meta.html             # 테마 오버라이드: 수정일 표시
+│   │   ├── post_nav_links.html        # 테마 오버라이드: "이전 글 / 다음 글"
 │   │   └── comments.html              # giscus
 │   ├── _shortcodes/timeline.html, tl-item.html
 │   └── _markup/
 │       ├── render-codeblock-mermaid.html  # ```mermaid → <pre class="mermaid">
 │       └── render-passthrough.html        # 수식 → transform.ToMath (빌드 시 KaTeX)
-├── static/favicon.svg
+├── static/                            # favicon.svg + PNG 파비콘 (16/32/180px)
 ├── themes/PaperMod/                   # git submodule
 └── .github/workflows/hugo.yml         # GitHub Pages 배포
 ```
@@ -192,13 +197,16 @@ PaperMod 는 Hugo 신규 레이아웃 구조(`layouts/_partials/`, `layouts/_mar
 ```bash
 git submodule update --remote --merge themes/PaperMod
 hugo server            # 깨진 곳 없는지 확인 (특히 layouts/ 오버라이드와 CSS 변수)
-diff themes/PaperMod/layouts/baseof.html layouts/baseof.html   # baseof 오버라이드에 테마 변경분 반영
+# 오버라이드한 테마 파일에 변경분 반영
+for f in baseof.html archives.html _partials/post_meta.html _partials/post_nav_links.html; do
+  diff themes/PaperMod/layouts/$f layouts/$f
+done
 git add themes/PaperMod
 git commit -m "Update PaperMod"
 ```
 
 ## 알려진 경고 / 미구현
 
+- `layouts/_partials/footer.html` 은 테마가 `partialCached` 로 캐시하지만, 이 사이트의 `baseof.html` 은 캐시 없이 호출한다. Mermaid 로더와 읽기 진행 바가 페이지별 조건에 의존하기 때문이다.
 - 빌드 시 나오는 `.Language.LanguageCode` / `.Language.LanguageDirection` deprecated WARN 은 PaperMod 테마 내부 코드에서 나오는 것으로, 이 저장소에서 고칠 수 없고 빌드에 영향도 없다.
-- 파비콘은 SVG 만 있다. PaperMod 가 참조하는 `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` 는 없으므로 해당 요청은 404 가 난다(표시에는 지장 없음). PNG 를 만들어 `static/` 에 넣으면 해결된다.
 - SNS 공유용 기본 OG 이미지가 없다. `static/images/og.png` 를 만들고 `hugo.toml` 에 `params.images = ["/images/og.png"]` 를 추가하면 된다.

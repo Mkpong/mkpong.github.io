@@ -6,7 +6,7 @@
 <div class="sb-card sb-profile">
   {{- with $p.avatar }}
   <a href="{{ "about/" | relLangURL }}" class="sb-avatar-link">
-    <img class="sb-avatar" src="{{ . }}" alt="{{ $p.name }}" width="88" height="88" loading="lazy" decoding="async">
+    <img class="sb-avatar" src="{{ . }}" alt="{{ $p.name }}" width="88" height="88" loading="eager" decoding="async" fetchpriority="low" referrerpolicy="no-referrer">
   </a>
   {{- end }}
   <div class="sb-name"><a href="{{ "about/" | relLangURL }}">{{ $p.name | default site.Title }}</a></div>

@@ -572,3 +572,170 @@
     font-size: 72px;
   }
 }
+
+/* ---------- 글: 넓은 화면에서 오른쪽 고정 목차 ---------- */
+@media (min-width: 1300px) {
+  :root {
+    --nav-width: 1320px;
+    --toc-width: 220px;
+  }
+
+  .post-single:has(> details.toc) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--toc-width);
+    column-gap: 36px;
+    align-items: start;
+  }
+
+  .post-single > * {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .post-single > details.toc {
+    grid-column: 2;
+    grid-row: 1 / span 40;
+    position: sticky;
+    top: var(--gap);
+    align-self: start;
+    margin: 0;
+    max-height: calc(100vh - var(--gap) * 2);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    background: transparent;
+    border: 0;
+    border-inline-start: 1px solid var(--border);
+    border-radius: 0;
+    padding-inline-start: 16px;
+  }
+
+  .post-single > details.toc summary {
+    padding: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    pointer-events: none;
+    list-style: none;
+  }
+
+  .post-single > details.toc summary::-webkit-details-marker,
+  .post-single > details.toc summary::marker {
+    display: none;
+  }
+
+  .post-single > details.toc .inner {
+    margin: 0;
+    padding: 0;
+  }
+
+  .post-single > details.toc ul {
+    padding-inline-start: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .post-single > details.toc ul ul {
+    padding-inline-start: 12px;
+  }
+
+  .post-single > details.toc li {
+    margin: 0;
+  }
+
+  .post-single > details.toc a {
+    display: block;
+    padding: 3px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--secondary);
+    text-decoration: none;
+    border-inline-start: 2px solid transparent;
+    margin-inline-start: -17px;
+    padding-inline-start: 15px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .post-single > details.toc a:hover,
+  .post-single > details.toc a.active {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .post-single > details.toc a.active {
+    border-inline-start-color: var(--primary);
+    font-weight: 600;
+  }
+}
+
+/* ---------- 글: 읽기 진행 바 ---------- */
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 3px;
+  pointer-events: none;
+  background: transparent;
+}
+
+.read-progress > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.1s linear;
+}
+
+/* ---------- 인쇄 ---------- */
+@media print {
+  .sidebar,
+  .header,
+  .footer,
+  .top-link,
+  .read-progress,
+  details.toc,
+  .series-nav,
+  .related,
+  .comments,
+  .paginav {
+    display: none !important;
+  }
+
+  .site-layout {
+    display: block;
+  }
+}
+
+/* ---------- 글 메타: 수정일 ---------- */
+.post-lastmod {
+  color: var(--secondary);
+}
+
+/* ---------- 접근성: 본문 건너뛰기 ---------- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 1001;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: var(--theme);
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .read-progress > span,
+  .sb-list a,
+  .series-card,
+  .post-single > details.toc a {
+    transition: none;
+  }
+}

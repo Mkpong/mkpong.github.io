@@ -1,0 +1,28 @@
+{{- /* PaperMod post_meta.html 오버라이드: 작성일 · (수정일) · 읽는 시간 · 작성자
+       수정일은 git 커밋 시각(enableGitInfo) 기준으로 작성일보다 하루 이상 뒤일 때만 표시 */ -}}
+{{- $meta := slice }}
+{{- $fmt := site.Params.DateFormat | default ":date_long" }}
+
+{{- if not .Date.IsZero }}
+  {{- $meta = $meta | append (printf "<span title='%s'>%s</span>" .Date (.Date | time.Format $fmt)) }}
+{{- end }}
+
+{{- if and (not .Lastmod.IsZero) (gt (sub .Lastmod.Unix .Date.Unix) 86400) }}
+  {{- $meta = $meta | append (printf "<span class='post-lastmod' title='%s'>수정 %s</span>" .Lastmod (.Lastmod | time.Format $fmt)) }}
+{{- end }}
+
+{{- if .Param "ShowReadingTime" }}
+  {{- $meta = $meta | append (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime))) }}
+{{- end }}
+
+{{- if .Param "ShowWordCount" }}
+  {{- $meta = $meta | append (printf "<span>%s</span>" (i18n "words" .WordCount | default (printf "%d words" .WordCount))) }}
+{{- end }}
+
+{{- if not (.Param "hideAuthor") }}
+  {{- with partial "author.html" . }}
+    {{- $meta = $meta | append (printf "<span>%s</span>" .) }}
+  {{- end }}
+{{- end }}
+
+{{- with $meta }}{{ delimit . "&nbsp;·&nbsp;" | safeHTML }}{{ end -}}

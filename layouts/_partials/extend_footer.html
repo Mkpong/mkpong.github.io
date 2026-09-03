@@ -1,5 +1,5 @@
 {{- /* Mermaid: render-codeblock-mermaid.html 이 hasMermaid 를 설정한 페이지에서만 로드.
-       PaperMod 다크 모드(body.dark)에 맞춰 테마 선택, 토글 시 재렌더링 */ -}}
+       PaperMod 다크 모드(html[data-theme=dark])에 맞춰 테마 선택, 토글 시 재렌더링 */ -}}
 {{- if .Store.Get "hasMermaid" }}
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -10,7 +10,7 @@
     sources.set(el.id, el.textContent);
   });
 
-  const isDark = () => document.body.classList.contains("dark");
+  const isDark = () => document.documentElement.dataset.theme === "dark";
 
   async function render() {
     mermaid.initialize({ startOnLoad: false, theme: isDark() ? "dark" : "default" });
@@ -27,5 +27,69 @@
   document.getElementById("theme-toggle")?.addEventListener("click", () => {
     setTimeout(render, 0);
   });
+</script>
+{{- end }}
+
+{{- /* 글 페이지: 읽기 진행 바 + 넓은 화면 목차 자동 펼침 + 현재 섹션 강조 */ -}}
+{{- if and (eq .Kind "page") (in site.MainSections .Type) }}
+<div class="read-progress" aria-hidden="true"><span></span></div>
+<script>
+  (function () {
+    var article = document.querySelector(".post-single");
+    if (!article) return;
+
+    // 읽기 진행 바
+    var bar = document.querySelector(".read-progress > span");
+    function updateProgress() {
+      var rect = article.getBoundingClientRect();
+      var total = rect.height - window.innerHeight;
+      var done = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 1;
+      bar.style.width = (done * 100).toFixed(2) + "%";
+    }
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+
+    // 목차
+    var toc = article.querySelector("details.toc");
+    if (!toc) return;
+    var wide = window.matchMedia("(min-width: 1300px)");
+    var userToggled = false;
+    function syncOpen() {
+      if (wide.matches) toc.open = true;
+      else if (!userToggled) toc.open = {{ if .Param "TocOpen" }}true{{ else }}false{{ end }};
+    }
+    toc.querySelector("summary").addEventListener("click", function () { userToggled = true; });
+    wide.addEventListener("change", syncOpen);
+    syncOpen();
+
+    // 현재 섹션 강조
+    var links = Array.prototype.slice.call(toc.querySelectorAll("a[href^='#']"));
+    if (!links.length || !("IntersectionObserver" in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[decodeURIComponent(a.getAttribute("href").slice(1))] = a; });
+    var headings = Object.keys(byId).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var current = null;
+    function setActive(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.classList.remove("active"); });
+      if (byId[id]) {
+        byId[id].classList.add("active");
+        if (wide.matches) byId[id].scrollIntoView({ block: "nearest" });
+      }
+      current = id;
+    }
+    var visible = new Map();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible.set(e.target.id, e.isIntersecting); });
+      var first = headings.find(function (h) { return visible.get(h.id); });
+      if (first) { setActive(first.id); return; }
+      // 화면에 제목이 없으면 지나온 마지막 제목
+      var passed = null;
+      headings.forEach(function (h) { if (h.getBoundingClientRect().top < 80) passed = h; });
+      if (passed) setActive(passed.id);
+    }, { rootMargin: "-64px 0px -70% 0px", threshold: 0 });
+    headings.forEach(function (h) { io.observe(h); });
+  })();
 </script>
 {{- end }}
