@@ -1,0 +1,30 @@
+{{- define "main" }}
+{{- /* PaperMod taxonomy.html 오버라이드: 글이 0개인 term(예: _index.md 로만 정의한 카테고리)도 표시하고, 설명을 함께 보여준다 */ -}}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+
+{{- $terms := .Pages.ByWeight }}
+{{- if eq .Type "tags" }}{{ $terms = .Pages.ByTitle }}{{ end }}
+
+{{- if not $terms }}
+<p class="empty">Nothing here yet.</p>
+{{- else if eq .Type "tags" }}
+<ul class="terms-tags">
+  {{- range $terms }}
+  <li><a href="{{ .Permalink }}">{{ .LinkTitle }} <sup><strong><sup>{{ len .Pages }}</sup></strong></sup></a></li>
+  {{- end }}
+</ul>
+{{- else }}
+<div class="term-grid">
+  {{- range $terms }}
+  <a class="term-card" href="{{ .Permalink }}">
+    <span class="term-title">{{ .LinkTitle }} <span class="term-count">{{ len .Pages }}</span></span>
+    {{- with .Description }}<span class="term-desc">{{ . }}</span>{{ end }}
+  </a>
+  {{- end }}
+</div>
+{{- end }}
+
+{{- end }}{{/* end main */}}

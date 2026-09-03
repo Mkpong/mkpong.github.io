@@ -15,21 +15,24 @@
   {{- partial "social_icons.html" (dict "align" "left") }}
   <div class="sb-stats">
     <a href="{{ "posts/" | relLangURL }}"><strong>{{ len $posts }}</strong> posts</a>
-    <a href="{{ "categories/" | relLangURL }}"><strong>{{ len site.Taxonomies.categories }}</strong> categories</a>
+    <a href="{{ "categories/" | relLangURL }}"><strong>{{ with site.GetPage "/categories" }}{{ len .Pages }}{{ else }}0{{ end }}</strong> categories</a>
     <a href="{{ "tags/" | relLangURL }}"><strong>{{ len site.Taxonomies.tags }}</strong> tags</a>
   </div>
 </div>
 
-{{- with site.Taxonomies.categories }}
-{{- if gt (len .) 0 }}
+{{- /* 카테고리/시리즈는 site.Taxonomies 대신 term 페이지를 순회한다.
+       content/categories/<name>/_index.md 로 정의한 빈 카테고리(글 0개)도 표시하기 위함.
+       정렬: _index.md 의 weight 오름차순 (weight 없는 항목은 뒤로), 같으면 제목순 */ -}}
+{{- with site.GetPage "/categories" }}
+{{- with .Pages.ByWeight }}
 <nav class="sb-card sb-block" aria-label="Categories">
   <h3><a href="{{ "categories/" | relLangURL }}">Categories</a></h3>
   <ul class="sb-list">
-    {{- range .ByCount }}
+    {{- range . }}
     <li>
-      <a href="{{ .Page.Permalink }}"{{ if eq .Page.Permalink $page.Permalink }} class="active" aria-current="page"{{ end }}>
-        <span>{{ .Page.LinkTitle }}</span>
-        <span class="sb-count">{{ .Count }}</span>
+      <a href="{{ .Permalink }}"{{ if eq .Permalink $page.Permalink }} class="active" aria-current="page"{{ end }}>
+        <span>{{ .LinkTitle }}</span>
+        <span class="sb-count">{{ len .Pages }}</span>
       </a>
     </li>
     {{- end }}
@@ -38,16 +41,16 @@
 {{- end }}
 {{- end }}
 
-{{- with site.Taxonomies.series }}
-{{- if gt (len .) 0 }}
+{{- with site.GetPage "/series" }}
+{{- with .Pages.ByWeight }}
 <nav class="sb-card sb-block sb-series" aria-label="Series">
   <h3><a href="{{ "series/" | relLangURL }}">Series</a></h3>
   <ul class="sb-list">
-    {{- range .ByCount }}
+    {{- range . }}
     <li>
-      <a href="{{ .Page.Permalink }}"{{ if eq .Page.Permalink $page.Permalink }} class="active" aria-current="page"{{ end }}>
-        <span>{{ .Page.LinkTitle }}</span>
-        <span class="sb-count">{{ .Count }}</span>
+      <a href="{{ .Permalink }}"{{ if eq .Permalink $page.Permalink }} class="active" aria-current="page"{{ end }}>
+        <span>{{ .LinkTitle }}</span>
+        <span class="sb-count">{{ len .Pages }}</span>
       </a>
     </li>
     {{- end }}

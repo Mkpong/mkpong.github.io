@@ -131,7 +131,20 @@ Front matter 주요 항목:
 | `hiddenInHomeList` | `true` 면 홈 "최근 글"에서 제외 |
 | `lastmod` | 보통 생략. `enableGitInfo` 로 파일의 마지막 커밋 시각이 자동으로 쓰이며, 작성일보다 하루 이상 뒤면 "Updated …" 으로 표시됨 |
 
-시리즈에 설명을 붙이려면 `content/series/<시리즈명>/_index.md` 를 만들고 `description` 을 적는다. 홈의 시리즈 카드에 표시된다.
+### 카테고리 / 시리즈 정의
+
+사이드바와 `/categories/`, `/series/` 페이지는 `content/categories/<name>/_index.md`, `content/series/<name>/_index.md` 로 정의된 항목을 보여준다. **글이 아직 없는 카테고리도 여기에 `_index.md` 만 만들면 표시된다.**
+
+```yaml
+# content/categories/kubernetes/_index.md
+---
+title: "Kubernetes"
+description: "카드와 사이드바 툴팁에 쓰이는 한 줄 설명"
+weight: 10        # 작을수록 위. 없으면 맨 뒤
+---
+```
+
+글의 front matter 에서 `categories: ["Kubernetes"]` 처럼 **title 과 같은 이름**을 쓰면 그 카테고리에 묶인다. `_index.md` 없이 글에서만 쓴 카테고리도 자동 생성되지만 설명과 순서는 지정할 수 없다.
 
 ### 본문에서 쓸 수 있는 것
 
@@ -162,7 +175,7 @@ Front matter 주요 항목:
 ├── content/
 │   ├── about/index.md                 # 소개 페이지
 │   ├── posts/                         # 글 (_index.md 는 섹션 제목)
-│   ├── categories/, tags/, series/    # 분류 페이지 제목 (_index.md)
+│   ├── categories/, tags/, series/    # 분류 페이지 제목 + 개별 카테고리 정의 (<name>/_index.md)
 │   ├── search.md                      # 검색 페이지 (PaperMod Fuse.js)
 │   └── archives.md                    # 아카이브 페이지
 ├── i18n/ko.yaml                       # 테마 UI 문구를 영어로 덮어씀 (목차, 읽는 시간, 복사 등)
@@ -173,6 +186,7 @@ Front matter 주요 항목:
 ├── layouts/
 │   ├── baseof.html                    # 테마 baseof 오버라이드: 사이드바 + 본문 2단 레이아웃, 본문 건너뛰기 링크, 푸터 캐시 해제
 │   ├── archives.html                  # 테마 오버라이드: 월 그룹 표기
+│   ├── taxonomy.html                  # 테마 오버라이드: 글 0개인 카테고리도 표시, 설명 카드
 │   ├── home.html                      # 홈 (글 목록)
 │   ├── 404.html
 │   ├── _partials/
@@ -200,7 +214,7 @@ PaperMod 는 Hugo 신규 레이아웃 구조(`layouts/_partials/`, `layouts/_mar
 git submodule update --remote --merge themes/PaperMod
 hugo server            # 깨진 곳 없는지 확인 (특히 layouts/ 오버라이드와 CSS 변수)
 # 오버라이드한 테마 파일에 변경분 반영
-for f in baseof.html archives.html _partials/post_meta.html _partials/post_nav_links.html; do
+for f in baseof.html archives.html taxonomy.html _partials/post_meta.html _partials/post_nav_links.html; do
   diff themes/PaperMod/layouts/$f layouts/$f
 done
 git add themes/PaperMod
