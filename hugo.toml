@@ -83,7 +83,7 @@ buildExpired = false
   # ---------- 홈 화면 프로필 (layouts/home.html) ----------
   [params.profile]
     name = "Jaeyoung"
-    role = "AI Infrastructure · Graduate Student"
+    role = "M.S. Student · BoanLab, Dankook Univ."
     tagline = "GPU 클러스터 위에서 모델이 **잘, 그리고 싸게** 돌아가게 만드는 일에 관심이 있습니다."
     bio = """
 분산 학습, 모델 서빙, GPU 스케줄링 같은 AI 인프라 주제를 공부하면서 배운 것과 삽질한 기록을 남깁니다.
