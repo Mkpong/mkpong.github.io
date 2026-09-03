@@ -1,0 +1,15 @@
+{{- /* 사용법:
+  {{< tl-item date="2025.03 – 현재" title="OO대학교 석사과정" sub="AI 인프라 연구실" >}}
+  마크다운 본문 (선택)
+  {{< /tl-item >}}
+*/ -}}
+<div class="tl-item">
+  <div class="tl-date">{{ .Get "date" }}</div>
+  <div class="tl-body">
+    <div class="tl-title">{{ .Get "title" }}</div>
+    {{- with .Get "sub" }}<div class="tl-sub">{{ . }}</div>{{ end }}
+    {{- with trim .Inner "\n\t " }}
+    <div class="tl-desc">{{ . | $.Page.RenderString (dict "display" "block") }}</div>
+    {{- end }}
+  </div>
+</div>

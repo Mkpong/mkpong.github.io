@@ -1,0 +1,40 @@
+{{- /* giscus 댓글. hugo.toml 의 params.giscus.repo 가 비어 있으면 아무것도 출력하지 않는다. */ -}}
+{{- with site.Params.giscus }}
+{{- if .repo }}
+<section class="comments" id="comments">
+  <h3>댓글</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ .repo }}"
+    data-repo-id="{{ .repoId }}"
+    data-category="{{ .category }}"
+    data-category-id="{{ .categoryId }}"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="ko"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</section>
+<script>
+  // PaperMod 테마 토글에 맞춰 giscus 테마 동기화
+  (function () {
+    function giscusTheme() {
+      return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    }
+    function sync() {
+      var frame = document.querySelector("iframe.giscus-frame");
+      if (!frame) return;
+      frame.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme() } } }, "https://giscus.app");
+    }
+    document.getElementById("theme-toggle")?.addEventListener("click", function () { setTimeout(sync, 50); });
+    window.addEventListener("message", function (e) {
+      if (e.origin === "https://giscus.app") sync();
+    }, { once: true });
+  })();
+</script>
+{{- end }}
+{{- end }}

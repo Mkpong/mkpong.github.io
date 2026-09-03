@@ -3,6 +3,7 @@ locale = "ko-kr"   # Hugo 0.158+ (구 languageCode)
 defaultContentLanguage = "ko"
 title = "Jaeyoung Tech"
 theme = "PaperMod"
+copyright = "© 2026 Jaeyoung"
 
 # 한국어(CJK) 본문 글자 수 / 요약 길이 계산을 정확하게
 hasCJKLanguage = true
@@ -29,16 +30,36 @@ buildExpired = false
   tag = "tags"
   series = "series"
 
+# "함께 읽기" 추천 기준 (layouts/_partials/extend_post_content.html)
+[related]
+  includeNewer = true
+  threshold = 60
+  toLower = true
+  [[related.indices]]
+    name = "series"
+    weight = 100
+  [[related.indices]]
+    name = "tags"
+    weight = 80
+  [[related.indices]]
+    name = "categories"
+    weight = 40
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
 [params]
   env = "production"
   description = "AI 인프라를 공부하는 대학원생의 기술 블로그"
   author = "Jaeyoung"
   keywords = ["AI Infra", "MLOps", "GPU", "분산학습", "Kubernetes"]
+  mainSections = ["posts"]
   defaultTheme = "auto"
   disableThemeToggle = false
+  DateFormat = "2006년 1월 2일"
 
   ShowReadingTime = true
-  ShowWordCount = true
+  ShowWordCount = false
   ShowShareButtons = false
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
@@ -48,32 +69,60 @@ buildExpired = false
   TocOpen = false
   hidemeta = false
   hideSummary = false
-  disableSpecial1stPost = false
+  disableSpecial1stPost = true
   disableScrollToTop = false
-  comments = false
+  # 댓글: params.giscus 가 채워져 있을 때만 실제로 렌더링됨 (layouts/_partials/comments.html)
+  comments = true
 
   # 사이트 전체에서 KaTeX CSS를 항상 로드하려면 true.
   # false면 글 front matter의 `math: true` 또는 수식 감지 시에만 로드.
   math = false
 
+  # ---------- 홈 화면 프로필 (layouts/home.html) ----------
+  [params.profile]
+    name = "Jaeyoung"
+    role = "AI Infrastructure · Graduate Student"
+    tagline = "GPU 클러스터 위에서 모델이 **잘, 그리고 싸게** 돌아가게 만드는 일에 관심이 있습니다."
+    bio = """
+분산 학습, 모델 서빙, GPU 스케줄링 같은 AI 인프라 주제를 공부하면서 배운 것과 삽질한 기록을 남깁니다.
+한국어로 정리된 자료가 부족하다고 느낀 내용을 우선적으로 씁니다.
+"""
+    # GitHub 프로필 사진. 직접 올린 이미지를 쓰려면 static/ 에 넣고 "/images/avatar.jpg" 처럼 지정
+    avatar = "https://github.com/mkpong.png"
+    interests = ["분산 학습", "모델 서빙", "GPU 스케줄링", "Kubernetes", "CUDA", "MLOps"]
+
+  [params.home]
+    recentCount = 5   # 홈 "최근 글" 개수
+    tagCount = 15     # 홈 "태그" 개수
+
+  # ---------- 댓글 (giscus) ----------
+  # https://giscus.app 에서 저장소를 설정한 뒤 아래 4개 값을 채우면 글 하단에 댓글이 붙는다.
+  # 비어 있으면 아무것도 렌더링되지 않는다.
+  [params.giscus]
+    repo = ""
+    repoId = ""
+    category = ""
+    categoryId = ""
+
   [params.assets]
     # highlight.js 대신 Hugo 내장 Chroma 사용 (빌드 시 하이라이팅, JS 불필요)
     disableHLJS = true
     disableFingerprinting = false
+    favicon = "/favicon.svg"
+    safari_pinned_tab = "/favicon.svg"
 
   [params.label]
     text = "Jaeyoung Tech"
 
-  [params.homeInfoParams]
-    Title = "Jaeyoung Tech 👋"
-    Content = """
-AI 인프라 분야를 공부하는 대학원생의 기술 블로그입니다.
-GPU 클러스터, 분산 학습, 모델 서빙, MLOps에 대해 배우고 겪은 것을 한국어로 정리합니다.
-"""
+  [params.footer]
+    text = "AI 인프라 공부 기록"
 
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/mkpong"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:leeja042499@gmail.com"
   [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
@@ -101,20 +150,30 @@ GPU 클러스터, 분산 학습, 모델 서빙, MLOps에 대해 배우고 겪은
     url = "/posts/"
     weight = 10
   [[menu.main]]
-    identifier = "tags"
-    name = "태그"
-    url = "/tags/"
+    identifier = "categories"
+    name = "카테고리"
+    url = "/categories/"
     weight = 20
+  [[menu.main]]
+    identifier = "series"
+    name = "시리즈"
+    url = "/series/"
+    weight = 30
   [[menu.main]]
     identifier = "archives"
     name = "아카이브"
     url = "/archives/"
-    weight = 30
+    weight = 40
+  [[menu.main]]
+    identifier = "about"
+    name = "소개"
+    url = "/about/"
+    weight = 50
   [[menu.main]]
     identifier = "search"
     name = "검색"
     url = "/search/"
-    weight = 40
+    weight = 60
 
 [markup]
   [markup.goldmark]

@@ -60,6 +60,55 @@ git submodule update --init --recursive
 
 Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른 컴퓨터에서는 위 설치 절차를 다시 해야 한다.
 
+## 사이트 구성
+
+| 경로 | 내용 | 어디서 고치나 |
+|---|---|---|
+| `/` | 프로필 히어로(이름·역할·소개·관심 분야·소셜 링크) + 최근 글 + 시리즈 + 카테고리 + 태그 | `hugo.toml` 의 `[params.profile]`, `[params.home]` / 템플릿은 `layouts/home.html` |
+| `/about/` | 소개, 관심 분야, 이력 타임라인, 기술 스택, 연락처 | `content/about/index.md` |
+| `/posts/` | 글 목록 | `content/posts/` |
+| `/categories/`, `/tags/`, `/series/` | 분류 페이지 | 글 front matter 의 `categories` / `tags` / `series` |
+| `/archives/` | 연·월별 목록 | `content/archives.md` |
+| `/search/` | 검색 (Fuse.js, `index.json` 기반) | `content/search.md`, `hugo.toml` 의 `[params.fuseOpts]` |
+| 글 하단 | 시리즈 내비게이션, 함께 읽기(관련 글), 댓글(giscus) | `layouts/_partials/extend_post_content.html`, `comments.html` |
+| 404 | 홈/검색/아카이브로 안내 | `layouts/404.html` |
+
+### 홈 프로필 수정
+
+`hugo.toml` 의 `[params.profile]`:
+
+```toml
+[params.profile]
+  name = "Jaeyoung"
+  role = "AI Infrastructure · Graduate Student"
+  tagline = "한 줄 소개 (마크다운 가능)"
+  bio = """여러 줄 소개"""
+  avatar = "https://github.com/mkpong.png"   # 또는 static/images/avatar.jpg → "/images/avatar.jpg"
+  interests = ["분산 학습", "모델 서빙", ...]
+```
+
+소셜 링크는 `[[params.socialIcons]]` (github, email, rss, linkedin, x 등 PaperMod 가 지원하는 이름).
+
+### 소개 페이지의 이력 타임라인
+
+`content/about/index.md` 에서 shortcode 로 작성한다. 현재 들어 있는 항목은 **자리표시자**이므로 실제 이력으로 바꿔야 한다.
+
+```markdown
+{{< timeline >}}
+{{< tl-item date="2026.03 – 현재" title="OO대학교 석사과정" sub="OO 연구실" >}}
+설명 (마크다운, 생략 가능)
+{{< /tl-item >}}
+{{< /timeline >}}
+```
+
+### 댓글 (giscus)
+
+1. 저장소 Settings > General > Features 에서 **Discussions** 활성화
+2. https://github.com/apps/giscus 앱을 저장소에 설치
+3. https://giscus.app 에서 저장소를 입력하면 나오는 `data-repo-id`, `data-category`, `data-category-id` 값을 `hugo.toml` 의 `[params.giscus]` 에 채운다
+
+`repo` 가 비어 있는 동안에는 댓글 영역이 렌더링되지 않는다.
+
 ## 글 쓰기
 
 ```bash
@@ -71,9 +120,14 @@ Front matter 주요 항목:
 | 키 | 설명 |
 |---|---|
 | `draft` | `true` 면 배포에서 제외. 발행할 때 `false` 로 |
+| `description` | 목록·검색·SNS 미리보기에 쓰이는 한 줄 요약 |
+| `tags`, `categories` | 분류. 홈과 분류 페이지에 집계됨 |
+| `series` | 같은 이름의 글끼리 묶여 글 하단에 시리즈 내비게이션이 생김 |
 | `showToc` | 목차 표시 |
 | `math` | `true` 면 KaTeX CSS 로드 (수식이 감지되면 자동으로도 로드되지만 명시하는 편이 안전) |
-| `tags`, `categories`, `series` | 분류 |
+| `hiddenInHomeList` | `true` 면 홈 "최근 글"에서 제외 |
+
+시리즈에 설명을 붙이려면 `content/series/<시리즈명>/_index.md` 를 만들고 `description` 을 적는다. 홈의 시리즈 카드에 표시된다.
 
 ### 본문에서 쓸 수 있는 것
 
@@ -81,6 +135,9 @@ Front matter 주요 항목:
 - **Mermaid**: ` ```mermaid ` 코드 펜스. 해당 글에서만 스크립트가 로드되고 다크 모드 토글에 맞춰 다시 그려짐
 - **수식**: `$$ … $$` / `\[ … \]` (블록), `$ … $` / `\( … \)` (인라인). 빌드 시 KaTeX HTML 로 변환되므로 브라우저 JS 불필요
   - 본문에 달러 기호(`$5`)를 자주 쓴다면 `hugo.toml` 의 `passthrough.delimiters.inline` 에서 `['$', '$']` 를 제거할 것
+- **타임라인**: 위 `timeline` / `tl-item` shortcode (소개 페이지 외에서도 사용 가능)
+
+"함께 읽기"는 `hugo.toml` 의 `[related]` 가중치(series > tags > categories > date)로 고른다.
 
 렌더링 확인용 샘플: [`content/posts/hello-world.md`](content/posts/hello-world.md)
 
@@ -96,34 +153,47 @@ Front matter 주요 항목:
 
 ```
 .
-├── hugo.toml                          # 사이트 설정 (메뉴, 검색, 하이라이팅, 수식 passthrough)
+├── hugo.toml                          # 사이트 설정 (프로필, 메뉴, 검색, 관련 글, 댓글, 수식 passthrough)
 ├── content/
-│   ├── posts/                         # 글
+│   ├── about/index.md                 # 소개 페이지
+│   ├── posts/                         # 글 (_index.md 는 섹션 제목)
+│   ├── categories/, tags/, series/    # 분류 페이지 제목 (_index.md)
 │   ├── search.md                      # 검색 페이지 (PaperMod Fuse.js)
 │   └── archives.md                    # 아카이브 페이지
 ├── archetypes/posts.md                # hugo new posts/... 템플릿
-├── assets/css/extended/typography.css # 한글 타이포그래피 (Pretendard, keep-all, line-height 1.7)
+├── assets/css/extended/
+│   ├── typography.css                 # 한글 타이포그래피 (Pretendard, keep-all, line-height 1.7)
+│   └── site.css                       # 홈 히어로·섹션, 시리즈, 타임라인, 함께 읽기, 404
 ├── layouts/
-│   ├── _partials/extend_head.html     # Pretendard 폰트, KaTeX CSS 로드
-│   ├── _partials/extend_footer.html   # Mermaid 로더 (다크 모드 대응)
+│   ├── home.html                      # 홈 화면
+│   ├── 404.html
+│   ├── _partials/
+│   │   ├── extend_head.html           # Pretendard 폰트, KaTeX CSS 로드
+│   │   ├── extend_footer.html         # Mermaid 로더 (다크 모드 대응)
+│   │   ├── extend_post_content.html   # 시리즈 내비게이션, 함께 읽기
+│   │   └── comments.html              # giscus
+│   ├── _shortcodes/timeline.html, tl-item.html
 │   └── _markup/
 │       ├── render-codeblock-mermaid.html  # ```mermaid → <pre class="mermaid">
 │       └── render-passthrough.html        # 수식 → transform.ToMath (빌드 시 KaTeX)
+├── static/favicon.svg
 ├── themes/PaperMod/                   # git submodule
 └── .github/workflows/hugo.yml         # GitHub Pages 배포
 ```
 
-PaperMod 는 Hugo 신규 레이아웃 구조(`layouts/_partials/`, `layouts/_markup/`)를 쓰므로 테마 오버라이드도 같은 경로에 둔다.
+PaperMod 는 Hugo 신규 레이아웃 구조(`layouts/_partials/`, `layouts/_markup/`, `layouts/_shortcodes/`)를 쓰므로 테마 오버라이드도 같은 경로에 둔다.
 
 ## 테마 업데이트
 
 ```bash
 git submodule update --remote --merge themes/PaperMod
-hugo server            # 깨진 곳 없는지 확인
+hugo server            # 깨진 곳 없는지 확인 (특히 layouts/ 오버라이드와 CSS 변수)
 git add themes/PaperMod
 git commit -m "Update PaperMod"
 ```
 
-## 알려진 경고
+## 알려진 경고 / 미구현
 
-빌드 시 나오는 `.Language.LanguageCode` / `.Language.LanguageDirection` deprecated WARN 은 PaperMod 테마 내부 코드에서 나오는 것으로, 이 저장소에서 고칠 수 없고 빌드에 영향도 없다. 테마 업데이트로 해소될 때까지 무시한다.
+- 빌드 시 나오는 `.Language.LanguageCode` / `.Language.LanguageDirection` deprecated WARN 은 PaperMod 테마 내부 코드에서 나오는 것으로, 이 저장소에서 고칠 수 없고 빌드에 영향도 없다.
+- 파비콘은 SVG 만 있다. PaperMod 가 참조하는 `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` 는 없으므로 해당 요청은 404 가 난다(표시에는 지장 없음). PNG 를 만들어 `static/` 에 넣으면 해결된다.
+- SNS 공유용 기본 OG 이미지가 없다. `static/images/og.png` 를 만들고 `hugo.toml` 에 `params.images = ["/images/og.png"]` 를 추가하면 된다.

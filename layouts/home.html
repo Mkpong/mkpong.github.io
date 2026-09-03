@@ -1,0 +1,115 @@
+{{- define "main" }}
+{{- $p := site.Params.profile }}
+
+{{- /* ---------- 프로필 히어로 ---------- */}}
+<section class="hero">
+  {{- with $p.avatar }}
+  <img class="hero-avatar" src="{{ . }}" alt="{{ $p.name }}" width="112" height="112" loading="eager" decoding="async">
+  {{- end }}
+  <div class="hero-body">
+    {{- with $p.role }}<p class="hero-role">{{ . }}</p>{{ end }}
+    <h1 class="hero-name">{{ $p.name | default site.Title }}</h1>
+    {{- with $p.tagline }}<p class="hero-tagline">{{ . | markdownify }}</p>{{ end }}
+    {{- with $p.bio }}<div class="hero-bio">{{ . | $.RenderString (dict "display" "block") }}</div>{{ end }}
+    {{- with $p.interests }}
+    <ul class="chips" aria-label="관심 분야">
+      {{- range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{- end }}
+    <div class="hero-actions">
+      {{- partial "social_icons.html" (dict "align" "left") }}
+      <a class="button" href="{{ "about/" | relLangURL }}">소개 더 보기</a>
+    </div>
+  </div>
+</section>
+
+{{- /* ---------- 최근 글 ---------- */}}
+{{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $posts = where $posts "Params.hiddenInHomeList" "!=" true }}
+{{- $recent := first (site.Params.home.recentCount | default 5) $posts }}
+<section class="home-section">
+  <div class="section-head">
+    <h2>최근 글</h2>
+    <a href="{{ "posts/" | relLangURL }}">전체 글 →</a>
+  </div>
+  {{- range $recent }}
+  <article class="post-entry">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">{{ .Title }}</h2>
+    </header>
+    {{- if not (.Param "hideSummary") }}
+    <div class="entry-content">
+      <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}…{{ end }}</p>
+    </div>
+    {{- end }}
+    <footer class="entry-footer">
+      {{- partial "post_meta.html" . -}}
+      {{- with .GetTerms "tags" }}
+      <span class="entry-tags">
+        {{- range . }}<span>#{{ .LinkTitle }}</span>{{ end }}
+      </span>
+      {{- end }}
+    </footer>
+    <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+  </article>
+  {{- else }}
+  <p class="empty">아직 글이 없습니다.</p>
+  {{- end }}
+</section>
+
+{{- /* ---------- 시리즈 ---------- */}}
+{{- with site.Taxonomies.series }}
+{{- if gt (len .) 0 }}
+<section class="home-section">
+  <div class="section-head">
+    <h2>시리즈</h2>
+    <a href="{{ "series/" | relLangURL }}">모두 보기 →</a>
+  </div>
+  <div class="series-grid">
+    {{- range .ByCount }}
+    <a class="series-card" href="{{ .Page.Permalink }}">
+      <span class="series-title">{{ .Page.LinkTitle }}</span>
+      {{- with .Page.Description }}<span class="series-desc">{{ . }}</span>{{ end }}
+      <span class="series-count">{{ .Count }}편</span>
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- end }}
+
+{{- /* ---------- 카테고리 ---------- */}}
+{{- with site.Taxonomies.categories }}
+{{- if gt (len .) 0 }}
+<section class="home-section">
+  <div class="section-head">
+    <h2>카테고리</h2>
+    <a href="{{ "categories/" | relLangURL }}">모두 보기 →</a>
+  </div>
+  <ul class="terms-tags">
+    {{- range .ByCount }}
+    <li><a href="{{ .Page.Permalink }}">{{ .Page.LinkTitle }} <sup>{{ .Count }}</sup></a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
+{{- end }}
+
+{{- /* ---------- 태그 ---------- */}}
+{{- with site.Taxonomies.tags }}
+{{- if gt (len .) 0 }}
+<section class="home-section">
+  <div class="section-head">
+    <h2>태그</h2>
+    <a href="{{ "tags/" | relLangURL }}">모두 보기 →</a>
+  </div>
+  <ul class="terms-tags tags-small">
+    {{- range first (site.Params.home.tagCount | default 15) .ByCount }}
+    <li><a href="{{ .Page.Permalink }}">#{{ .Page.LinkTitle }} <sup>{{ .Count }}</sup></a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
+{{- end }}
+
+{{- end }}{{/* end main */}}
