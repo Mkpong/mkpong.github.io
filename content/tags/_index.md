@@ -1,3 +1,3 @@
 ---
-title: "태그"
+title: "Tags"
 ---

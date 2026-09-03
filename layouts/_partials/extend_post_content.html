@@ -4,8 +4,8 @@
 {{- $s := index . 0 }}
 {{- $inSeries := $s.Pages.ByDate }}
 {{- if gt (len $inSeries) 1 }}
-<nav class="series-nav" aria-label="시리즈 목록">
-  <h3>시리즈 · <a href="{{ $s.Permalink }}">{{ $s.LinkTitle }}</a> <span class="series-nav-count">{{ len $inSeries }}편</span></h3>
+<nav class="series-nav" aria-label="Series">
+  <h3>Series · <a href="{{ $s.Permalink }}">{{ $s.LinkTitle }}</a> <span class="series-nav-count">{{ len $inSeries }} posts</span></h3>
   <ol>
     {{- range $inSeries }}
     <li{{ if eq .Permalink $.Permalink }} class="current" aria-current="page"{{ end }}>
@@ -18,8 +18,8 @@
 {{- end }}
 
 {{- with first 3 (site.RegularPages.Related .) }}
-<section class="related" aria-label="함께 읽기">
-  <h3>함께 읽기</h3>
+<section class="related" aria-label="Related posts">
+  <h3>Related Posts</h3>
   <div class="related-list">
     {{- range . }}
     <a class="related-item" href="{{ .Permalink }}">

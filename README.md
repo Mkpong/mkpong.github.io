@@ -69,7 +69,7 @@ Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른
 | `/about/` | 소개, 관심 분야, 이력 타임라인, 논문 목록, 기술 스택, 연락처 | `content/about/index.md` |
 | `/posts/` | 글 목록 | `content/posts/` |
 | `/categories/`, `/tags/`, `/series/` | 분류 페이지 | 글 front matter 의 `categories` / `tags` / `series` |
-| `/archives/` | 연·월별 목록 (한국어 월 표기) | `content/archives.md`, `layouts/archives.html` |
+| `/archives/` | 연·월별 목록 | `content/archives.md`, `layouts/archives.html` |
 | `/search/` | 검색 (Fuse.js, `index.json` 기반) | `content/search.md`, `hugo.toml` 의 `[params.fuseOpts]` |
 | 글 페이지 | 1300px 이상에서 오른쪽 고정 목차(현재 섹션 강조), 상단 읽기 진행 바, 작성일·수정일·읽는 시간, 이전/다음 글 | `layouts/_partials/extend_footer.html`(스크립트), `post_meta.html`, `post_nav_links.html`, CSS 는 `site.css` |
 | 글 하단 | 시리즈 내비게이션, 함께 읽기(관련 글), 댓글(giscus) | `layouts/_partials/extend_post_content.html`, `comments.html` |
@@ -129,7 +129,7 @@ Front matter 주요 항목:
 | `showToc` | 목차 표시 |
 | `math` | `true` 면 KaTeX CSS 로드 (수식이 감지되면 자동으로도 로드되지만 명시하는 편이 안전) |
 | `hiddenInHomeList` | `true` 면 홈 "최근 글"에서 제외 |
-| `lastmod` | 보통 생략. `enableGitInfo` 로 파일의 마지막 커밋 시각이 자동으로 쓰이며, 작성일보다 하루 이상 뒤면 "수정 …" 으로 표시됨 |
+| `lastmod` | 보통 생략. `enableGitInfo` 로 파일의 마지막 커밋 시각이 자동으로 쓰이며, 작성일보다 하루 이상 뒤면 "Updated …" 으로 표시됨 |
 
 시리즈에 설명을 붙이려면 `content/series/<시리즈명>/_index.md` 를 만들고 `description` 을 적는다. 홈의 시리즈 카드에 표시된다.
 
@@ -140,7 +140,7 @@ Front matter 주요 항목:
 - **수식**: `$$ … $$` / `\[ … \]` (블록), `$ … $` / `\( … \)` (인라인). 빌드 시 KaTeX HTML 로 변환되므로 브라우저 JS 불필요
   - 본문에 달러 기호(`$5`)를 자주 쓴다면 `hugo.toml` 의 `passthrough.delimiters.inline` 에서 `['$', '$']` 를 제거할 것
 - **타임라인**: 위 `timeline` / `tl-item` shortcode (소개 페이지 외에서도 사용 가능)
-- **논문 목록**: `pubs` / `pub` shortcode. `title`, `venue` 필수, `type`(Poster 등)·`note`(2저자 등)·`award`·`status`(심사 중 등)·`url` 선택
+- **논문 목록**: `pubs` / `pub` shortcode. `title`, `venue` 필수, `type`(Poster 등)·`note`(2nd author 등)·`award`·`status`(Under review 등)·`url` 선택
 
 "함께 읽기"는 `hugo.toml` 의 `[related]` 가중치(series > tags > categories > date)로 고른다.
 
@@ -165,13 +165,14 @@ Front matter 주요 항목:
 │   ├── categories/, tags/, series/    # 분류 페이지 제목 (_index.md)
 │   ├── search.md                      # 검색 페이지 (PaperMod Fuse.js)
 │   └── archives.md                    # 아카이브 페이지
+├── i18n/ko.yaml                       # 테마 UI 문구를 영어로 덮어씀 (목차, 읽는 시간, 복사 등)
 ├── archetypes/posts.md                # hugo new posts/... 템플릿
 ├── assets/css/extended/
 │   ├── typography.css                 # 한글 타이포그래피 (Pretendard, keep-all, line-height 1.7)
 │   └── site.css                       # 2단 레이아웃, 사이드바, 글 목록, 시리즈, 타임라인, 함께 읽기, 404
 ├── layouts/
 │   ├── baseof.html                    # 테마 baseof 오버라이드: 사이드바 + 본문 2단 레이아웃, 본문 건너뛰기 링크, 푸터 캐시 해제
-│   ├── archives.html                  # 테마 오버라이드: 월 표기 한글화
+│   ├── archives.html                  # 테마 오버라이드: 월 그룹 표기
 │   ├── home.html                      # 홈 (글 목록)
 │   ├── 404.html
 │   ├── _partials/
@@ -180,7 +181,7 @@ Front matter 주요 항목:
 │   │   ├── extend_footer.html         # Mermaid 로더, 읽기 진행 바, 목차 현재 섹션 강조
 │   │   ├── extend_post_content.html   # 시리즈 내비게이션, 함께 읽기
 │   │   ├── post_meta.html             # 테마 오버라이드: 수정일 표시
-│   │   ├── post_nav_links.html        # 테마 오버라이드: "이전 글 / 다음 글"
+│   │   ├── post_nav_links.html        # 테마 오버라이드: "Previous / Next"
 │   │   └── comments.html              # giscus
 │   ├── _shortcodes/                   # timeline, tl-item, pubs, pub
 │   └── _markup/

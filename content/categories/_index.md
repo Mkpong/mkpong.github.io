@@ -1,4 +1,4 @@
 ---
-title: "카테고리"
-description: "주제별로 묶은 글"
+title: "Categories"
+description: "Posts grouped by topic"
 ---

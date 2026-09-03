@@ -8,7 +8,7 @@
 {{- end }}
 
 {{- if and (not .Lastmod.IsZero) (gt (sub .Lastmod.Unix .Date.Unix) 86400) }}
-  {{- $meta = $meta | append (printf "<span class='post-lastmod' title='%s'>수정 %s</span>" .Lastmod (.Lastmod | time.Format $fmt)) }}
+  {{- $meta = $meta | append (printf "<span class='post-lastmod' title='%s'>Updated %s</span>" .Lastmod (.Lastmod | time.Format $fmt)) }}
 {{- end }}
 
 {{- if .Param "ShowReadingTime" }}

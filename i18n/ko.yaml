@@ -1,0 +1,25 @@
+# UI 문구는 영어로 통일 (테마의 i18n/ko.yaml 을 덮어씀). 글 본문은 한국어.
+- id: prev_page
+  translation: "Prev"
+- id: next_page
+  translation: "Next"
+- id: read_time
+  translation:
+    one: "1 min read"
+    other: "{{ .Count }} min read"
+- id: words
+  translation:
+    one: "1 word"
+    other: "{{ .Count }} words"
+- id: toc
+  translation: "Contents"
+- id: translations
+  translation: "Translations"
+- id: home
+  translation: "Home"
+- id: edit_post
+  translation: "Edit"
+- id: code_copy
+  translation: "Copy"
+- id: code_copied
+  translation: "Copied!"

@@ -2,7 +2,7 @@
 {{- with site.Params.giscus }}
 {{- if .repo }}
 <section class="comments" id="comments">
-  <h3>댓글</h3>
+  <h3>Comments</h3>
   <script src="https://giscus.app/client.js"
     data-repo="{{ .repo }}"
     data-repo-id="{{ .repoId }}"
@@ -14,7 +14,7 @@
     data-emit-metadata="0"
     data-input-position="top"
     data-theme="preferred_color_scheme"
-    data-lang="ko"
+    data-lang="en"
     data-loading="lazy"
     crossorigin="anonymous"
     async></script>

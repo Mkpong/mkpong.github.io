@@ -5,7 +5,7 @@
 {{- $paginator := .Paginate $pages }}
 
 <header class="page-header home-header">
-  <h1>최근 글</h1>
+  <h1>Recent Posts</h1>
   {{- with site.Params.description }}<div class="post-description">{{ . }}</div>{{ end }}
 </header>
 
@@ -35,7 +35,7 @@
   <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- else }}
-<p class="empty">아직 글이 없습니다.</p>
+<p class="empty">No posts yet.</p>
 {{- end }}
 
 {{- if gt $paginator.TotalPages 1 }}

@@ -29,11 +29,12 @@
 {{- $year := .Key }}
 <div class="archive-year">
   <h2 class="archive-year-header" id="{{ $year }}">
-    <a class="archive-header-link" href="#{{ $year }}">{{ $year }}년</a>
+    <a class="archive-header-link" href="#{{ $year }}">{{ $year }}</a>
     <sup class="archive-count">&nbsp;{{ len .Pages }}</sup>
   </h2>
+  {{- $months := slice "January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December" }}
   {{- range .Pages.GroupByDate "1" }}
-  {{- $month := printf "%s월" .Key }}
+  {{- $month := index $months (sub (int .Key) 1) }}
   <div class="archive-month">
     <h3 class="archive-month-header" id="{{ $year }}-{{ .Key }}">
       <a class="archive-header-link" href="#{{ $year }}-{{ .Key }}">{{ $month }}</a>

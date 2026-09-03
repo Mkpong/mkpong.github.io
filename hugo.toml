@@ -51,13 +51,13 @@ buildExpired = false
 
 [params]
   env = "production"
-  description = "AI 인프라를 공부하는 대학원생의 기술 블로그"
+  description = "Notes on AI infrastructure — distributed training, model serving, and GPU scheduling — by a graduate student. Posts are written in Korean."
   author = "Jaeyoung"
-  keywords = ["AI Infra", "MLOps", "GPU", "분산학습", "Kubernetes"]
+  keywords = ["AI Infrastructure", "MLOps", "GPU", "Distributed Training", "Kubernetes"]
   mainSections = ["posts"]
   defaultTheme = "auto"
   disableThemeToggle = false
-  DateFormat = "2006년 1월 2일"
+  DateFormat = "2006-01-02"   # 로케일 영향 없는 ISO 표기
 
   ShowReadingTime = true
   ShowWordCount = false
@@ -84,17 +84,17 @@ buildExpired = false
   [params.profile]
     name = "Jaeyoung"
     role = "M.S. Student · BoanLab, Dankook Univ."
-    tagline = "GPU 클러스터 위에서 모델이 **잘, 그리고 싸게** 돌아가게 만드는 일에 관심이 있습니다."
+    tagline = "Making models run **well, and cheaply** on GPU clusters."
     bio = """
-분산 학습, 모델 서빙, GPU 스케줄링 같은 AI 인프라 주제를 공부하면서 배운 것과 삽질한 기록을 남깁니다.
-한국어로 정리된 자료가 부족하다고 느낀 내용을 우선적으로 씁니다.
+Notes and lessons learned while studying AI infrastructure: distributed training, model serving, and GPU scheduling.
+Posts are written in Korean.
 """
     # GitHub 프로필 사진. 직접 올린 이미지를 쓰려면 static/ 에 넣고 "/images/avatar.jpg" 처럼 지정
     avatar = "https://github.com/mkpong.png"
-    interests = ["분산 학습", "모델 서빙", "GPU 스케줄링", "Kubernetes", "CUDA", "MLOps"]
+    interests = ["Distributed Training", "Model Serving", "GPU Scheduling", "Kubernetes", "CUDA", "MLOps"]
 
   [params.sidebar]
-    tagCount = 20     # 사이드바 "태그" 개수
+    tagCount = 20     # number of tags shown in the sidebar
 
   # ---------- 댓글 (giscus) ----------
   # https://giscus.app 에서 저장소를 설정한 뒤 아래 4개 값을 채우면 글 하단에 댓글이 붙는다.
@@ -116,7 +116,7 @@ buildExpired = false
     text = "Jaeyoung Tech"
 
   [params.footer]
-    text = "AI 인프라 공부 기록"
+    text = "Notes on AI infrastructure"
 
   [[params.socialIcons]]
     name = "github"
@@ -130,7 +130,7 @@ buildExpired = false
 
   [params.editPost]
     URL = "https://github.com/mkpong/mkpong.github.io/tree/main/content"
-    Text = "수정 제안"
+    Text = "Suggest an edit"
     appendFilePath = true
 
   # Fuse.js 검색 옵션
@@ -147,32 +147,32 @@ buildExpired = false
 [menu]
   [[menu.main]]
     identifier = "posts"
-    name = "글"
+    name = "Posts"
     url = "/posts/"
     weight = 10
   [[menu.main]]
     identifier = "categories"
-    name = "카테고리"
+    name = "Categories"
     url = "/categories/"
     weight = 20
   [[menu.main]]
     identifier = "series"
-    name = "시리즈"
+    name = "Series"
     url = "/series/"
     weight = 30
   [[menu.main]]
     identifier = "archives"
-    name = "아카이브"
+    name = "Archive"
     url = "/archives/"
     weight = 40
   [[menu.main]]
     identifier = "about"
-    name = "소개"
+    name = "About"
     url = "/about/"
     weight = 50
   [[menu.main]]
     identifier = "search"
-    name = "검색"
+    name = "Search"
     url = "/search/"
     weight = 60
 
