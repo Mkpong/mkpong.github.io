@@ -25,6 +25,12 @@ ShowBreadCrumbs: false
 {{< tl-item date="2025.03 – 현재" title="단국대학교 일반대학원 인공지능융합학과 석사과정" sub="BoanLab" >}}
 AI 인프라 · 시스템 분야 연구
 {{< /tl-item >}}
+{{< tl-item date="2024.08 – 2025.02" title="학부연구생" sub="BoanLab" >}}
+분산 학습·GPU 관련 기초 연구 참여. 이때의 경험이 지금 관심 분야로 이어졌습니다.
+{{< /tl-item >}}
+{{< tl-item date="2023.07 – 2024.07" title="학부연구생" sub="CIS" >}}
+시각장애인을 위한 컴퓨터 비전 솔루션 개발 — ML 모델 학습, 아두이노 기반 임베디드 보드 프로그래밍
+{{< /tl-item >}}
 {{< tl-item date="2019.03 – 2025.02" title="단국대학교 컴퓨터공학과 학사" >}}
 {{< /tl-item >}}
 {{< /timeline >}}
