@@ -51,7 +51,7 @@ buildExpired = false
 
 [params]
   env = "production"
-  description = "Notes on AI infrastructure — distributed training, model serving, and GPU scheduling — by a graduate student. Posts are written in Korean."
+  description = "AI 인프라를 공부하는 대학원생의 기술 블로그"
   author = "Jaeyoung"
   keywords = ["AI Infrastructure", "MLOps", "GPU", "Distributed Training", "Kubernetes"]
   mainSections = ["posts"]
@@ -84,10 +84,10 @@ buildExpired = false
   [params.profile]
     name = "Jaeyoung"
     role = "M.S. Student · BoanLab, Dankook Univ."
-    tagline = "Making models run **well, and cheaply** on GPU clusters."
+    tagline = "GPU 클러스터 위에서 모델이 **잘, 그리고 싸게** 돌아가게 만드는 일에 관심이 있습니다."
     bio = """
-Notes and lessons learned while studying AI infrastructure: distributed training, model serving, and GPU scheduling.
-Posts are written in Korean.
+분산 학습, 모델 서빙, GPU 스케줄링 같은 AI 인프라 주제를 공부하면서 배운 것과 삽질한 기록을 남깁니다.
+한국어로 정리된 자료가 부족하다고 느낀 내용을 우선적으로 씁니다.
 """
     # GitHub 프로필 사진. 직접 올린 이미지를 쓰려면 static/ 에 넣고 "/images/avatar.jpg" 처럼 지정
     avatar = "https://github.com/mkpong.png"
@@ -116,7 +116,7 @@ Posts are written in Korean.
     text = "Jaeyoung Tech"
 
   [params.footer]
-    text = "Notes on AI infrastructure"
+    text = "AI 인프라 공부 기록"
 
   [[params.socialIcons]]
     name = "github"

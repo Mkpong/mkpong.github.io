@@ -1,65 +1,65 @@
 ---
 title: "About"
-description: "Jaeyoung — M.S. student at BoanLab, Dankook University, working on AI infrastructure."
+description: "단국대학교 일반대학원 인공지능융합학과 석사과정(BoanLab)에서 AI 인프라를 공부하는 Jaeyoung 입니다."
 showToc: false
 hidemeta: true
 comments: false
 ShowBreadCrumbs: false
 ---
 
-Hi, I'm **Jaeyoung**, an M.S. student in the Department of AI Convergence at Dankook University (BoanLab), working on AI infrastructure. This blog is where I write down what I learn — and what breaks — along the way. Posts are written in Korean.
+안녕하세요, **Jaeyoung** 입니다. 단국대학교 일반대학원 인공지능융합학과 석사과정(BoanLab)에서 AI 인프라 분야를 공부하고 있고, 이 블로그에는 공부하면서 배운 것과 삽질한 기록을 한국어로 남깁니다.
 
-I think training and serving large models ultimately comes down to **how efficiently you can drive a handful of GPUs**. That's why I'm more interested in what sits below the framework — schedulers, networking, memory, and kernels — than in the framework itself.
+큰 모델을 학습하고 서빙하는 일은 결국 **GPU 몇 장을 얼마나 효율적으로 굴리느냐**의 문제라고 생각합니다. 그래서 프레임워크보다 그 아래 — 스케줄러, 네트워크, 메모리, 커널 — 에 더 관심이 많습니다.
 
 ## Interests
 
-- **Distributed training** — data/tensor/pipeline parallelism, NCCL, communication–computation overlap
-- **Model serving** — vLLM, Triton, KV-cache management, batching strategies
-- **GPU scheduling** — GPU resource management on Kubernetes, MIG/MPS, queueing
-- **Performance analysis** — profiling, bottleneck hunting, benchmark design
-- **MLOps** — experiment tracking, reproducible training pipelines
+- **분산 학습** — 데이터/텐서/파이프라인 병렬, NCCL, 통신-연산 오버랩
+- **모델 서빙** — vLLM, Triton, KV 캐시 관리, 배칭 전략
+- **GPU 스케줄링** — Kubernetes 위의 GPU 리소스 관리, MIG/MPS, 큐잉
+- **성능 분석** — 프로파일링, 병목 찾기, 벤치마크 설계
+- **MLOps** — 실험 관리, 재현 가능한 학습 파이프라인
 
 ## Experience
 
 {{< timeline >}}
-{{< tl-item date="Mar 2025 – Present" title="M.S. Student, Dept. of AI Convergence, Dankook University" sub="BoanLab" >}}
-Research on AI infrastructure and systems
+{{< tl-item date="2025.03 – 현재" title="단국대학교 일반대학원 인공지능융합학과 석사과정" sub="BoanLab" >}}
+AI 인프라 · 시스템 분야 연구
 {{< /tl-item >}}
-{{< tl-item date="Aug 2024 – Feb 2025" title="Undergraduate Researcher" sub="BoanLab" >}}
-Introductory research on distributed training and GPUs
+{{< tl-item date="2024.08 – 2025.02" title="학부연구생" sub="BoanLab" >}}
+분산 학습·GPU 관련 기초 연구 참여
 {{< /tl-item >}}
-{{< tl-item date="Jul 2023 – Jul 2024" title="Undergraduate Researcher" sub="CIS Lab" >}}
-Computer vision solution for the visually impaired, ML model training, embedded board programming on Arduino
+{{< tl-item date="2023.07 – 2024.07" title="학부연구생" sub="CIS Lab" >}}
+시각장애인을 위한 컴퓨터 비전 솔루션 개발, ML 모델 학습, 아두이노 기반 임베디드 보드 프로그래밍
 {{< /tl-item >}}
-{{< tl-item date="Mar 2019 – Feb 2025" title="B.S. in Computer Science and Engineering, Dankook University" >}}
+{{< tl-item date="2019.03 – 2025.02" title="단국대학교 컴퓨터공학과 학사" >}}
 {{< /tl-item >}}
 {{< /timeline >}}
 
 ## Publications
 
 {{< pubs >}}
-{{< pub title="gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS" venue="IEEE Access, 2026" status="Under review" >}}
-{{< pub title="Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석" venue="KCC 2026" award="Best Presentation Award" >}}
+{{< pub title="gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS" venue="IEEE Access, 2026" status="심사 중" >}}
+{{< pub title="Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석" venue="KCC 2026" award="우수발표논문상" >}}
 {{< pub title="Sentra: A Kubernetes Sidecar-Based Multi-Layer Security Gateway for Protecting LLM APIs" venue="MobiSec 2025" type="Poster" award="KIISC Best Poster Award" >}}
 {{< pub title="KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments" venue="ICTC 2025" >}}
-{{< pub title="쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석" venue="ASK 2025" note="2nd author" >}}
+{{< pub title="쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석" venue="ASK 2025" note="2저자" >}}
 {{< pub title="대규모 NLP 모델에서 병렬화 기법의 성능 분석" venue="ACK 2024" >}}
 {{< /pubs >}}
 
 ## Tech Stack
 
-| Area | Tools |
+| 영역 | 주로 쓰는 것 |
 |---|---|
-| Languages | Python, C++, Go, Bash |
+| 언어 | Python, C++, Go, Bash |
 | ML | PyTorch, CUDA, NCCL, Triton |
-| Infrastructure | Kubernetes, Docker, Slurm, Terraform |
-| Observability | Prometheus, Grafana, Nsight Systems |
+| 인프라 | Kubernetes, Docker, Slurm, Terraform |
+| 관측 | Prometheus, Grafana, Nsight Systems |
 
-## About this blog
+## About This Blog
 
-- Built with [Hugo](https://gohugo.io/) and the [PaperMod](https://github.com/adityatelange/hugo-PaperMod) theme, deployed to GitHub Pages via GitHub Actions.
-- Found a mistake or know a better way? Use the **Suggest an edit** link at the top of each post, or open a GitHub issue.
-- Source: [github.com/mkpong/mkpong.github.io](https://github.com/mkpong/mkpong.github.io)
+- [Hugo](https://gohugo.io/) 와 [PaperMod](https://github.com/adityatelange/hugo-PaperMod) 테마로 만들었고, GitHub Actions 로 GitHub Pages 에 배포합니다.
+- 글에 오류가 있거나 더 나은 방법이 있다면 각 글 상단의 **Suggest an edit** 링크나 GitHub 이슈로 알려 주세요.
+- 소스: [github.com/mkpong/mkpong.github.io](https://github.com/mkpong/mkpong.github.io)
 
 ## Contact
 
