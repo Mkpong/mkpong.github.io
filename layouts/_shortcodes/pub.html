@@ -1,0 +1,15 @@
+{{- /* 사용법:
+  {{< pub title="논문 제목" venue="ICTC 2025" type="Poster" award="Best Poster Award" note="2저자" status="심사 중" url="https://..." >}}
+  type / award / note / status / url 은 선택 */ -}}
+<li class="pub">
+  <div class="pub-title">
+    {{- with .Get "url" }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $.Get "title" }}</a>{{ else }}{{ .Get "title" }}{{ end -}}
+  </div>
+  <div class="pub-meta">
+    <span class="pub-venue">{{ .Get "venue" }}</span>
+    {{- with .Get "type" }}<span class="pub-badge">{{ . }}</span>{{ end }}
+    {{- with .Get "note" }}<span class="pub-badge">{{ . }}</span>{{ end }}
+    {{- with .Get "award" }}<span class="pub-badge pub-award">{{ . }}</span>{{ end }}
+    {{- with .Get "status" }}<span class="pub-badge pub-status">{{ . }}</span>{{ end }}
+  </div>
+</li>

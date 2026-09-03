@@ -66,7 +66,7 @@ Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른
 |---|---|---|
 | 모든 페이지 왼쪽 | **사이드바**: 프로필(사진·이름·역할·한 줄 소개·소셜 링크·글/카테고리/태그 수) + 카테고리 + 시리즈 + 태그. 860px 이하에서는 본문 위로 접힘 | `hugo.toml` 의 `[params.profile]`, `[params.sidebar]` / 템플릿은 `layouts/_partials/sidebar.html`, 2단 레이아웃은 `layouts/baseof.html` |
 | `/` | 최근 글 목록 (페이지네이션) | `layouts/home.html` |
-| `/about/` | 소개, 관심 분야, 이력 타임라인, 기술 스택, 연락처 | `content/about/index.md` |
+| `/about/` | 소개, 관심 분야, 이력 타임라인, 논문 목록, 기술 스택, 연락처 | `content/about/index.md` |
 | `/posts/` | 글 목록 | `content/posts/` |
 | `/categories/`, `/tags/`, `/series/` | 분류 페이지 | 글 front matter 의 `categories` / `tags` / `series` |
 | `/archives/` | 연·월별 목록 (한국어 월 표기) | `content/archives.md`, `layouts/archives.html` |
@@ -140,6 +140,7 @@ Front matter 주요 항목:
 - **수식**: `$$ … $$` / `\[ … \]` (블록), `$ … $` / `\( … \)` (인라인). 빌드 시 KaTeX HTML 로 변환되므로 브라우저 JS 불필요
   - 본문에 달러 기호(`$5`)를 자주 쓴다면 `hugo.toml` 의 `passthrough.delimiters.inline` 에서 `['$', '$']` 를 제거할 것
 - **타임라인**: 위 `timeline` / `tl-item` shortcode (소개 페이지 외에서도 사용 가능)
+- **논문 목록**: `pubs` / `pub` shortcode. `title`, `venue` 필수, `type`(Poster 등)·`note`(2저자 등)·`award`·`status`(심사 중 등)·`url` 선택
 
 "함께 읽기"는 `hugo.toml` 의 `[related]` 가중치(series > tags > categories > date)로 고른다.
 
@@ -181,7 +182,7 @@ Front matter 주요 항목:
 │   │   ├── post_meta.html             # 테마 오버라이드: 수정일 표시
 │   │   ├── post_nav_links.html        # 테마 오버라이드: "이전 글 / 다음 글"
 │   │   └── comments.html              # giscus
-│   ├── _shortcodes/timeline.html, tl-item.html
+│   ├── _shortcodes/                   # timeline, tl-item, pubs, pub
 │   └── _markup/
 │       ├── render-codeblock-mermaid.html  # ```mermaid → <pre class="mermaid">
 │       └── render-passthrough.html        # 수식 → transform.ToMath (빌드 시 KaTeX)

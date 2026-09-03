@@ -35,6 +35,17 @@ AI 인프라 · 시스템 분야 연구
 {{< /tl-item >}}
 {{< /timeline >}}
 
+## 논문
+
+{{< pubs >}}
+{{< pub title="gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS" venue="IEEE Access, 2026" status="심사 중" >}}
+{{< pub title="Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석" venue="KCC 2026" award="우수발표논문상" >}}
+{{< pub title="Sentra: A Kubernetes Sidecar-Based Multi-Layer Security Gateway for Protecting LLM APIs" venue="MobiSec 2025" type="Poster" award="KIISC Best Poster Award" >}}
+{{< pub title="KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments" venue="ICTC 2025" >}}
+{{< pub title="쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석" venue="ASK 2025" note="2저자" >}}
+{{< pub title="대규모 NLP 모델에서 병렬화 기법의 성능 분석" venue="ACK 2024" >}}
+{{< /pubs >}}
+
 ## 기술 스택
 
 | 영역 | 주로 쓰는 것 |

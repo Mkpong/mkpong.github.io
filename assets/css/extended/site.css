@@ -739,3 +739,96 @@
     transition: none;
   }
 }
+
+/* ---------- 소개: 논문 목록 ---------- */
+.pub-list {
+  list-style: none;
+  margin: 1rem 0 1.5rem;
+  padding: 0;
+  counter-reset: pub;
+}
+
+.pub {
+  position: relative;
+  padding: 14px 16px 14px 44px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--entry);
+}
+
+.pub::before {
+  counter-increment: pub;
+  content: counter(pub);
+  position: absolute;
+  left: 14px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: var(--secondary);
+  background: var(--code-bg);
+}
+
+.pub-title {
+  font-weight: 600;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.pub-title a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--tertiary);
+  text-underline-offset: 3px;
+}
+
+.pub-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--secondary);
+}
+
+.pub-venue {
+  font-weight: 500;
+  color: var(--primary);
+  margin-inline-end: 4px;
+}
+
+.pub-badge {
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 18px;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  background: var(--theme);
+}
+
+.pub-award {
+  color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 500;
+}
+
+.pub-award::before {
+  content: "★ ";
+  font-size: 10px;
+}
+
+.pub-status {
+  border-style: dashed;
+}
+
+/* 이력 타임라인 뒤에 오는 논문 섹션 여백 */
+.timeline + h2 {
+  margin-top: 0.5rem;
+}
