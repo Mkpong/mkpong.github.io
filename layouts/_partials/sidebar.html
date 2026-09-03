@@ -1,0 +1,70 @@
+{{- /* 왼쪽 사이드바: 프로필 + 카테고리 + 시리즈 + 태그. 모든 페이지에 표시 (layouts/baseof.html) */ -}}
+{{- $page := . }}
+{{- $p := site.Params.profile }}
+{{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+
+<div class="sb-card sb-profile">
+  {{- with $p.avatar }}
+  <a href="{{ "about/" | relLangURL }}" class="sb-avatar-link">
+    <img class="sb-avatar" src="{{ . }}" alt="{{ $p.name }}" width="88" height="88" loading="lazy" decoding="async">
+  </a>
+  {{- end }}
+  <div class="sb-name"><a href="{{ "about/" | relLangURL }}">{{ $p.name | default site.Title }}</a></div>
+  {{- with $p.role }}<div class="sb-role">{{ . }}</div>{{ end }}
+  {{- with $p.tagline }}<p class="sb-bio">{{ . | markdownify }}</p>{{ end }}
+  {{- partial "social_icons.html" (dict "align" "left") }}
+  <div class="sb-stats">
+    <a href="{{ "posts/" | relLangURL }}"><strong>{{ len $posts }}</strong> 글</a>
+    <a href="{{ "categories/" | relLangURL }}"><strong>{{ len site.Taxonomies.categories }}</strong> 카테고리</a>
+    <a href="{{ "tags/" | relLangURL }}"><strong>{{ len site.Taxonomies.tags }}</strong> 태그</a>
+  </div>
+</div>
+
+{{- with site.Taxonomies.categories }}
+{{- if gt (len .) 0 }}
+<nav class="sb-card sb-block" aria-label="카테고리">
+  <h3><a href="{{ "categories/" | relLangURL }}">카테고리</a></h3>
+  <ul class="sb-list">
+    {{- range .ByCount }}
+    <li>
+      <a href="{{ .Page.Permalink }}"{{ if eq .Page.Permalink $page.Permalink }} class="active" aria-current="page"{{ end }}>
+        <span>{{ .Page.LinkTitle }}</span>
+        <span class="sb-count">{{ .Count }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
+{{- end }}
+
+{{- with site.Taxonomies.series }}
+{{- if gt (len .) 0 }}
+<nav class="sb-card sb-block sb-series" aria-label="시리즈">
+  <h3><a href="{{ "series/" | relLangURL }}">시리즈</a></h3>
+  <ul class="sb-list">
+    {{- range .ByCount }}
+    <li>
+      <a href="{{ .Page.Permalink }}"{{ if eq .Page.Permalink $page.Permalink }} class="active" aria-current="page"{{ end }}>
+        <span>{{ .Page.LinkTitle }}</span>
+        <span class="sb-count">{{ .Count }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
+{{- end }}
+
+{{- with site.Taxonomies.tags }}
+{{- if gt (len .) 0 }}
+<nav class="sb-card sb-block sb-tags" aria-label="태그">
+  <h3><a href="{{ "tags/" | relLangURL }}">태그</a></h3>
+  <ul class="sb-chips">
+    {{- range first (site.Params.sidebar.tagCount | default 20) .ByCount }}
+    <li><a href="{{ .Page.Permalink }}"{{ if eq .Page.Permalink $page.Permalink }} class="active"{{ end }}>#{{ .Page.LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
+{{- end }}

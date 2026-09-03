@@ -64,7 +64,8 @@ Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른
 
 | 경로 | 내용 | 어디서 고치나 |
 |---|---|---|
-| `/` | 프로필 히어로(이름·역할·소개·관심 분야·소셜 링크) + 최근 글 + 시리즈 + 카테고리 + 태그 | `hugo.toml` 의 `[params.profile]`, `[params.home]` / 템플릿은 `layouts/home.html` |
+| 모든 페이지 왼쪽 | **사이드바**: 프로필(사진·이름·역할·한 줄 소개·소셜 링크·글/카테고리/태그 수) + 카테고리 + 시리즈 + 태그. 860px 이하에서는 본문 위로 접힘 | `hugo.toml` 의 `[params.profile]`, `[params.sidebar]` / 템플릿은 `layouts/_partials/sidebar.html`, 2단 레이아웃은 `layouts/baseof.html` |
+| `/` | 최근 글 목록 (페이지네이션) | `layouts/home.html` |
 | `/about/` | 소개, 관심 분야, 이력 타임라인, 기술 스택, 연락처 | `content/about/index.md` |
 | `/posts/` | 글 목록 | `content/posts/` |
 | `/categories/`, `/tags/`, `/series/` | 분류 페이지 | 글 front matter 의 `categories` / `tags` / `series` |
@@ -73,7 +74,7 @@ Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른
 | 글 하단 | 시리즈 내비게이션, 함께 읽기(관련 글), 댓글(giscus) | `layouts/_partials/extend_post_content.html`, `comments.html` |
 | 404 | 홈/검색/아카이브로 안내 | `layouts/404.html` |
 
-### 홈 프로필 수정
+### 사이드바 프로필 수정
 
 `hugo.toml` 의 `[params.profile]`:
 
@@ -84,8 +85,9 @@ Hugo 바이너리 자체도 저장소 밖(`~/.local/bin`)에 있으므로 다른
   tagline = "한 줄 소개 (마크다운 가능)"
   bio = """여러 줄 소개"""
   avatar = "https://github.com/mkpong.png"   # 또는 static/images/avatar.jpg → "/images/avatar.jpg"
-  interests = ["분산 학습", "모델 서빙", ...]
 ```
+
+`interests` 는 현재 사이드바에서 사용하지 않는다(소개 페이지에 관심 분야 섹션이 있음).
 
 소셜 링크는 `[[params.socialIcons]]` (github, email, rss, linkedin, x 등 PaperMod 가 지원하는 이름).
 
@@ -163,11 +165,13 @@ Front matter 주요 항목:
 ├── archetypes/posts.md                # hugo new posts/... 템플릿
 ├── assets/css/extended/
 │   ├── typography.css                 # 한글 타이포그래피 (Pretendard, keep-all, line-height 1.7)
-│   └── site.css                       # 홈 히어로·섹션, 시리즈, 타임라인, 함께 읽기, 404
+│   └── site.css                       # 2단 레이아웃, 사이드바, 글 목록, 시리즈, 타임라인, 함께 읽기, 404
 ├── layouts/
-│   ├── home.html                      # 홈 화면
+│   ├── baseof.html                    # 테마 baseof 오버라이드: 사이드바 + 본문 2단 레이아웃
+│   ├── home.html                      # 홈 (글 목록)
 │   ├── 404.html
 │   ├── _partials/
+│   │   ├── sidebar.html               # 왼쪽 사이드바 (프로필·카테고리·시리즈·태그)
 │   │   ├── extend_head.html           # Pretendard 폰트, KaTeX CSS 로드
 │   │   ├── extend_footer.html         # Mermaid 로더 (다크 모드 대응)
 │   │   ├── extend_post_content.html   # 시리즈 내비게이션, 함께 읽기
@@ -188,6 +192,7 @@ PaperMod 는 Hugo 신규 레이아웃 구조(`layouts/_partials/`, `layouts/_mar
 ```bash
 git submodule update --remote --merge themes/PaperMod
 hugo server            # 깨진 곳 없는지 확인 (특히 layouts/ 오버라이드와 CSS 변수)
+diff themes/PaperMod/layouts/baseof.html layouts/baseof.html   # baseof 오버라이드에 테마 변경분 반영
 git add themes/PaperMod
 git commit -m "Update PaperMod"
 ```

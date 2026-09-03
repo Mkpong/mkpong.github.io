@@ -91,9 +91,8 @@ buildExpired = false
     avatar = "https://github.com/mkpong.png"
     interests = ["분산 학습", "모델 서빙", "GPU 스케줄링", "Kubernetes", "CUDA", "MLOps"]
 
-  [params.home]
-    recentCount = 5   # 홈 "최근 글" 개수
-    tagCount = 15     # 홈 "태그" 개수
+  [params.sidebar]
+    tagCount = 20     # 사이드바 "태그" 개수
 
   # ---------- 댓글 (giscus) ----------
   # https://giscus.app 에서 저장소를 설정한 뒤 아래 4개 값을 채우면 글 하단에 댓글이 붙는다.
