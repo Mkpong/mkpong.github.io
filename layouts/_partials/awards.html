@@ -2,11 +2,11 @@
 <ul class="awards">
   {{- range .items }}
   <li class="award">
-    <span class="award-year">{{ .year }}</span>
-    <span class="award-body">
-      <span class="award-name">{{ partial "icon.html" "award" }}{{ .name }}</span>
-      {{- with .org }}<span class="award-org">{{ . }}</span>{{ end }}
-    </span>
+    <div class="award-head">
+      <span class="award-name">{{ .name }}</span>
+      {{- with .year }}<span class="entry-period">{{ . }}</span>{{ end }}
+    </div>
+    {{- with .org }}<div class="entry-org">{{ . }}</div>{{ end }}
   </li>
   {{- end }}
 </ul>

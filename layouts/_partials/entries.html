@@ -1,26 +1,24 @@
-{{- /* 타임라인 항목 목록. 사용: partial "entries.html" (dict "items" $items) */ -}}
+{{- /* 경력/학력/프로젝트/활동 항목. 사용: partial "entries.html" (dict "items" $items) */ -}}
 <div class="entries">
   {{- range .items }}
+  {{- $label := .title | default .role }}
   <article class="entry">
-    <div class="entry-period">{{ .period }}</div>
-    <div class="entry-body">
-      {{- $label := .title | default .role }}
+    <div class="entry-head">
       <h3 class="entry-title">
         {{- with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $label }}</a>{{ else }}{{ $label }}{{ end -}}
       </h3>
-      {{- with .org }}<div class="entry-org">{{ . }}</div>{{ end }}
-      {{- with .desc }}<div class="entry-desc">{{ . | markdownify }}</div>{{ end }}
-      {{- with .bullets }}
-      <ul class="entry-bullets">
-        {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
-      </ul>
-      {{- end }}
-      {{- with .tags }}
-      <ul class="tags">
-        {{- range . }}<li>{{ . }}</li>{{ end }}
-      </ul>
-      {{- end }}
+      {{- with .period }}<span class="entry-period">{{ . }}</span>{{ end }}
     </div>
+    {{- with .org }}<div class="entry-org">{{ . }}</div>{{ end }}
+    {{- with .desc }}<div class="entry-desc">{{ . | markdownify }}</div>{{ end }}
+    {{- with .bullets }}
+    <ul class="entry-bullets">
+      {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+    </ul>
+    {{- end }}
+    {{- with .tags }}
+    <p class="hashtags">{{ range . }}<span>#{{ replace . " " "" }}</span> {{ end }}</p>
+    {{- end }}
   </article>
   {{- end }}
 </div>

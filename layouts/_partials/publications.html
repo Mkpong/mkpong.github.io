@@ -10,12 +10,12 @@
     </div>
     {{- with .title_en }}<div class="pub-title-alt">{{ . }}</div>{{ end }}
     <div class="pub-meta">
-      <span class="pub-venue">{{ .venue }}{{ with .year }}, {{ . }}{{ end }}</span>
-      {{- with .type }}{{ with index $labels . }}<span class="badge">{{ . }}</span>{{ end }}{{ end }}
-      {{- if and .korean $labels.in_korean }}<span class="badge">{{ $labels.in_korean }}</span>{{ end }}
-      {{- with .note }}<span class="badge">{{ . }}</span>{{ end }}
-      {{- with .award }}<span class="badge badge-award">{{ partial "icon.html" "award" }}{{ . }}</span>{{ end }}
-      {{- with .status }}<span class="badge badge-status">{{ . }}</span>{{ end }}
+      <span class="pub-venue">{{ .venue }}{{ if and .year (not (in .venue .year)) }}, {{ .year }}{{ end }}</span>
+      {{- with .type }}{{ with index $labels . }}<span class="sep">·</span><span>{{ . }}</span>{{ end }}{{ end }}
+      {{- if and .korean $labels.in_korean }}<span class="sep">·</span><span>{{ $labels.in_korean }}</span>{{ end }}
+      {{- with .note }}<span class="sep">·</span><span>{{ . }}</span>{{ end }}
+      {{- with .award }}<span class="sep">·</span><span class="pub-award">{{ partial "icon.html" "award" }}{{ . }}</span>{{ end }}
+      {{- with .status }}<span class="sep">·</span><span class="pub-status">{{ . }}</span>{{ end }}
     </div>
   </li>
   {{- end }}

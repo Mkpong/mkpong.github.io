@@ -1,6 +1,6 @@
 # Jaeyoung — CV
 
-Hugo 로 만든 단일 페이지 이력서 사이트. 한국어(`/`)와 영어(`/en/`) 두 버전을 빌드하고, GitHub Actions 로 GitHub Pages 에 배포한다.
+Hugo 로 만든 문서형 단일 페이지 이력서 사이트. 한국어(`/`)와 영어(`/en/`) 두 버전을 빌드하고, GitHub Actions 로 GitHub Pages 에 배포한다.
 
 - 사이트: https://mkpong.github.io/ (영어: https://mkpong.github.io/en/)
 - 배포 워크플로: [`.github/workflows/hugo.yml`](.github/workflows/hugo.yml)
@@ -17,7 +17,7 @@ Hugo 로 만든 단일 페이지 이력서 사이트. 한국어(`/`)와 영어(`
 두 파일은 구조가 같다. 한쪽을 고치면 다른 쪽도 같이 고칠 것.
 
 ```yaml
-profile:        # 왼쪽 프로필 카드: 이름, 한 줄 소개, 소속, 연락처, Focus 태그
+profile:        # 상단 헤더: 이름, 한 줄 소개, 소속, 연락처, focus(해시태그로 표시)
 summary:        # 자기소개 (마크다운)
 experience:     # 경력 — role / org / period / bullets / tags
 education:      # 학력 — 형식은 experience 와 동일
@@ -35,7 +35,8 @@ meta:           # UI 문구 (건너뛰기, PDF 저장, 테마 등)
 - 한국어 논문은 `korean: true` 로 표시하면 영어판에서 `in Korean` 배지가 붙고, `title_en` 이 있으면 영문 제목이 부제로 나온다.
 - 항목에 `url` 을 넣으면 제목이 링크가 된다.
 - 프로필 사진은 `hugo.toml` 의 `params.avatar` (기본: GitHub 아바타). 직접 올리려면 `static/images/` 에 넣고 `/images/...` 로 지정.
-- 섹션 순서는 `layouts/_partials/header.html` 의 `$order` 와 `layouts/home.html` 에 고정돼 있다.
+- 섹션 순서는 `layouts/home.html` 의 `$order` 와 섹션 블록 순서에 고정돼 있다.
+- `experience` 등의 `tags` 는 항목 아래에 `#해시태그` 로 표시된다.
 
 ## 로컬에서 보기
 
@@ -79,7 +80,7 @@ hugo server
 
 - **한/영 토글** — 헤더의 `KO | EN`. Hugo 다국어로 두 페이지를 따로 빌드하며(`hreflang` 포함), 선택한 언어는 브라우저에 기억되어 다음 방문 때 자동으로 그 언어로 열린다.
 - **다크 모드** — 시스템 설정을 따르고, 헤더 버튼으로 고정할 수 있다.
-- **PDF 저장** — 헤더의 인쇄 버튼 → 브라우저의 "PDF로 저장". 인쇄 전용 스타일이 적용된다(헤더·버튼 제거, 한 단 레이아웃, 링크 주소 표기).
+- **PDF 저장** — 오른쪽 위 인쇄 버튼 → 브라우저의 "PDF로 저장". 인쇄 전용 스타일이 적용된다(컨트롤·섹션 링크 제거, 링크 주소 표기).
 - 접근성: 본문 건너뛰기 링크, 시맨틱 섹션, `prefers-reduced-motion`.
 
 ## 배포
@@ -102,11 +103,11 @@ hugo server
 │   └── _index.en.md
 ├── layouts/
 │   ├── baseof.html            # 문서 뼈대
-│   ├── home.html              # CV 페이지: 프로필 + 섹션
+│   ├── home.html              # CV 페이지: 헤더(이름·연락처) + 섹션 링크 + 섹션
 │   ├── 404.html
 │   └── _partials/
 │       ├── head.html          # meta, hreflang, 파비콘, 폰트, CSS
-│       ├── header.html        # 이름, 섹션 내비게이션, KO/EN, 테마, 인쇄
+│       ├── header.html        # 오른쪽 위 컨트롤: KO/EN, 테마, 인쇄
 │       ├── footer.html
 │       ├── entries.html       # 경력/학력/프로젝트/활동 타임라인
 │       ├── publications.html  # 논문 목록 + 배지

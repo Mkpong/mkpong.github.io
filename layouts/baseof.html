@@ -7,7 +7,7 @@
 <body>
   <a class="skip-link" href="#main">{{ $cv.meta.skip }}</a>
   {{- partial "header.html" (dict "page" . "cv" $cv) }}
-  <div class="layout" id="main">
+  <div id="main">
     {{- block "main" . }}{{ end }}
   </div>
   {{- partial "footer.html" (dict "page" . "cv" $cv) }}
