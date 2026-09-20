@@ -149,7 +149,26 @@ awards:
 #     tags: ["Go", "eBPF"]
 projects:
   title: "Projects"
-  items: []
+  items:
+    - title: "gShare"
+      period: "2025 – Present"
+      org: "BoanLab"
+      url: "https://github.com/boanlab/gShare"
+      desc: "A GPU sharing platform for interactive workloads (notebooks, terminals, IDEs) on Kubernetes, letting multiple users share a single GPU."
+      bullets:
+        - "Fractional and exclusive GPU sessions with hard VRAM limits via HAMi"
+        - "Credit accounting across organization → group → user: hold at admission, metered consumption, monthly refills"
+        - "Admission queueing when VRAM is oversubscribed, pause-with-GPU-return, idle reaping driven by DCGM/HAMi metrics"
+        - "FastAPI backend · Go (controller-runtime) operator · React/TypeScript frontend · Helm deployment, multi-cluster support"
+      tags: ["Kubernetes", "GPU", "HAMi", "Go", "Python", "React"]
+    - title: "gSonar"
+      period: "2025 – 2026"
+      org: "BoanLab"
+      desc: "An observability system that quantifies GPU interference under time-slicing / MPS sharing and attributes it to the responsible pods."
+      bullets:
+        - "Per-pod GPU observation at the kernel level with eBPF (KCC 2026, Best Presentation Award)"
+        - "Interference quantification and attribution model across sharing modes (under review at IEEE Access)"
+      tags: ["GPU", "eBPF", "Time-Slicing", "MPS", "Kubernetes"]
 
 # Talks, mentoring, community work. Same format as projects
 activities:

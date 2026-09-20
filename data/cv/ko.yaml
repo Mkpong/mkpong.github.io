@@ -146,7 +146,26 @@ awards:
 #     tags: ["Go", "eBPF"]
 projects:
   title: "Projects"
-  items: []
+  items:
+    - title: "gShare"
+      period: "2025 – 현재"
+      org: "BoanLab"
+      url: "https://github.com/boanlab/gShare"
+      desc: "Kubernetes 위에서 노트북·터미널·IDE 같은 인터랙티브 워크로드가 GPU 한 장을 나눠 쓰게 해 주는 GPU 공유 플랫폼."
+      bullets:
+        - "HAMi 기반 분할(fractional)·전용 GPU 세션과 VRAM 하드 리밋"
+        - "조직 → 그룹 → 사용자 계층의 크레딧 계정: 입장 시 홀드, 사용량 미터링, 월 리필"
+        - "VRAM 초과 시 입장 큐잉, 세션 일시정지 시 GPU 반납, DCGM/HAMi 지표 기반 유휴 세션 자동 정리"
+        - "FastAPI 백엔드 · Go(controller-runtime) 오퍼레이터 · React/TypeScript 프론트엔드 · Helm 배포, 멀티 클러스터 지원"
+      tags: ["Kubernetes", "GPU", "HAMi", "Go", "Python", "React"]
+    - title: "gSonar"
+      period: "2025 – 2026"
+      org: "BoanLab"
+      desc: "Time-Slicing / MPS 로 GPU 를 공유할 때 생기는 간섭을 정량화하고, 어떤 파드가 얼마나 원인인지 귀속하는 관측 시스템."
+      bullets:
+        - "eBPF 로 파드 단위 GPU 사용을 커널 수준에서 관측 (KCC 2026, 우수발표논문상)"
+        - "공유 모드별 간섭 정량화 및 원인 귀속 모델 (IEEE Access 심사 중)"
+      tags: ["GPU", "eBPF", "Time-Slicing", "MPS", "Kubernetes"]
 
 # 발표, 멘토링, 대외활동 등. 형식은 projects 와 동일
 activities:
