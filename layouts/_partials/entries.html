@@ -16,6 +16,11 @@
       {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>
     {{- end }}
+    {{- with .links }}
+    <p class="entry-links">
+      {{- range $i, $l := . }}{{ if $i }}<span class="sep">·</span>{{ end }}<a href="{{ $l.href }}" target="_blank" rel="noopener">{{ partial "icon.html" ($l.icon | default "link") }}{{ $l.label }}</a>{{ end }}
+    </p>
+    {{- end }}
     {{- with .tags }}
     <p class="hashtags">{{ range . }}<span>#{{ replace . " " "" }}</span> {{ end }}</p>
     {{- end }}

@@ -154,6 +154,16 @@ projects:
       period: "2025 – Present"
       org: "BoanLab"
       url: "https://github.com/boanlab/gShare"
+      links:
+        - label: "GitHub"
+          href: "https://github.com/boanlab/gShare"
+          icon: github
+        - label: "Docs"
+          href: "https://boanlab.github.io/gShare/"
+          icon: book
+        - label: "Demo video"
+          href: "https://youtu.be/baotMIXoxc0"
+          icon: video
       desc: "A GPU sharing platform for interactive workloads (notebooks, terminals, IDEs) on Kubernetes, letting multiple users share a single GPU."
       bullets:
         - "Fractional and exclusive GPU sessions with hard VRAM limits via HAMi"

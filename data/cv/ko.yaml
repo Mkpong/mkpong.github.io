@@ -151,6 +151,16 @@ projects:
       period: "2025 – 현재"
       org: "BoanLab"
       url: "https://github.com/boanlab/gShare"
+      links:
+        - label: "GitHub"
+          href: "https://github.com/boanlab/gShare"
+          icon: github
+        - label: "가이드 문서"
+          href: "https://boanlab.github.io/gShare/"
+          icon: book
+        - label: "소개 영상"
+          href: "https://youtu.be/baotMIXoxc0"
+          icon: video
       desc: "Kubernetes 위에서 노트북·터미널·IDE 같은 인터랙티브 워크로드가 GPU 한 장을 나눠 쓰게 해 주는 GPU 공유 플랫폼."
       bullets:
         - "HAMi 기반 분할(fractional)·전용 GPU 세션과 VRAM 하드 리밋"

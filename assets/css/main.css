@@ -171,6 +171,11 @@ img { max-width: 100%; }
 
 .entry .hashtags { margin-top: 4px; }
 
+.entry-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 8px; margin-top: 8px; font-size: 13.5px; }
+.entry-links a { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); }
+.entry-links a:hover { color: var(--text); }
+.entry-links svg { width: 14px; height: 14px; }
+
 /* ---------- 논문 ---------- */
 .pubs { list-style: decimal; padding-inline-start: 1.6em; display: grid; gap: 12px; }
 .pub::marker { color: var(--faint); font-size: 13px; }
@@ -229,6 +234,7 @@ img { max-width: 100%; }
   .avatar { width: 64pt; height: 64pt; border-radius: 4pt; }
   .contact-line a::after { content: " (" attr(href) ")"; color: var(--faint); font-size: 9pt; }
   .contact-line a[href^="mailto:"]::after { content: ""; }
+  .entry-links a::after { content: " (" attr(href) ")"; color: var(--faint); font-size: 9pt; }
   .section { margin-top: 16pt; break-inside: avoid-page; }
   .entry, .pub, .award { break-inside: avoid; }
   .entries { gap: 10pt; }

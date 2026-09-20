@@ -33,7 +33,7 @@ meta:           # UI 문구 (건너뛰기, PDF 저장, 테마 등)
 - `summary.body` 와 `bullets` 는 마크다운을 쓸 수 있다.
 - 논문 `type` 은 `journal` / `international` / `domestic` / `poster` 중 하나. 배지 문구는 `publications.labels` 에서 바꾼다.
 - 한국어 논문은 `korean: true` 로 표시하면 영어판에서 `in Korean` 배지가 붙고, `title_en` 이 있으면 영문 제목이 부제로 나온다.
-- 항목에 `url` 을 넣으면 제목이 링크가 된다.
+- 항목에 `url` 을 넣으면 제목이 링크가 된다. `links: [{label, href, icon}]` 를 넣으면 항목 아래에 링크 줄이 붙는다 (icon: github / book / video / link / scholar / linkedin).
 - 프로필 사진은 `hugo.toml` 의 `params.avatar` (기본: GitHub 아바타). 직접 올리려면 `static/images/` 에 넣고 `/images/...` 로 지정.
 - 섹션 순서는 `layouts/home.html` 의 `$order` 와 섹션 블록 순서에 고정돼 있다.
 - `experience` 등의 `tags` 는 항목 아래에 `#해시태그` 로 표시된다.
