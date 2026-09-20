@@ -1,0 +1,160 @@
+# =====================================================================
+# 한국어 CV 내용. 영어판은 data/cv/en.yaml (구조 동일)
+# - 비어 있는 섹션(items: [])은 화면에 나오지 않는다
+# - 본문(summary.body, bullets)은 마크다운 사용 가능
+# =====================================================================
+
+meta:
+  skip: "본문으로 건너뛰기"
+  print: "PDF로 저장"
+  theme: "테마 전환"
+  language: "언어"
+  updated: "마지막 수정"
+  present: "현재"
+
+profile:
+  name: "Jaeyoung"
+  headline: "AI 인프라를 공부하는 석사과정 학생"
+  affiliation: "단국대학교 일반대학원 인공지능융합학과 · BoanLab"
+  contact:
+    - icon: mail
+      label: "leeja042499@gmail.com"
+      href: "mailto:leeja042499@gmail.com"
+    - icon: github
+      label: "github.com/mkpong"
+      href: "https://github.com/mkpong"
+  focus_title: "Focus"
+  focus:
+    - "분산 학습"
+    - "GPU 스케줄링"
+    - "eBPF 관측"
+    - "Kubernetes"
+    - "LLM 서빙 보안"
+
+summary:
+  title: "Summary"
+  body: |
+    단국대학교 일반대학원 인공지능융합학과 석사과정(BoanLab)에서 AI 인프라를 연구하고 있습니다.
+    Kubernetes 위의 GPU 워크로드를 대상으로, Time-Slicing/MPS 공유 환경에서 생기는 **GPU 간섭을 eBPF로 관측하고 정량화**하는 일과,
+    LLM 서빙 환경의 **런타임 보안**(사이드카 게이트웨이, 정책 자동화)을 주로 다룹니다.
+
+    큰 모델을 학습하고 서빙하는 일은 결국 **GPU 몇 장을 얼마나 효율적으로 굴리느냐**의 문제라고 생각합니다.
+    그래서 프레임워크보다 그 아래 — 스케줄러, 네트워크, 메모리, 커널 — 에 더 관심이 많습니다.
+
+experience:
+  title: "Experience"
+  items:
+    - role: "석사과정 연구원"
+      org: "BoanLab, 단국대학교"
+      period: "2025.03 – 현재"
+      bullets:
+        - "Time-Slicing / MPS 공유 환경에서의 GPU 간섭 정량화 및 원인 귀속 연구 (gSonar, IEEE Access 심사 중)"
+        - "eBPF 기반 파드 단위 GPU 관측 및 간섭 분석 (KCC 2026, 우수발표논문상)"
+        - "Kubernetes 사이드카 기반 LLM API 다층 보안 게이트웨이 Sentra (MobiSec 2025, Best Poster Award)"
+        - "LLM 기반 클라우드 네이티브 런타임 보안 정책 자동화 KubeScribe (ICTC 2025)"
+        - "서비스 메시 환경에서 mTLS 적용에 따른 네트워크 성능 분석 (ASK 2025)"
+      tags: ["GPU", "eBPF", "Kubernetes", "LLM Security"]
+    - role: "학부연구생"
+      org: "BoanLab, 단국대학교"
+      period: "2024.08 – 2025.02"
+      bullets:
+        - "분산 학습·GPU 관련 기초 연구 참여"
+        - "대규모 NLP 모델에서 병렬화 기법의 성능 분석 (ACK 2024)"
+      tags: ["Distributed Training", "GPU"]
+    - role: "학부연구생"
+      org: "CIS Lab, 단국대학교"
+      period: "2023.07 – 2024.07"
+      bullets:
+        - "시각장애인을 위한 컴퓨터 비전 솔루션 개발"
+        - "ML 모델 학습"
+        - "아두이노 기반 임베디드 보드 프로그래밍"
+      tags: ["Computer Vision", "Embedded"]
+
+education:
+  title: "Education"
+  items:
+    - role: "석사과정 · 인공지능융합학과"
+      org: "단국대학교 일반대학원"
+      period: "2025.03 – 현재"
+      bullets:
+        - "소속 연구실: BoanLab"
+    - role: "학사 · 컴퓨터공학과"
+      org: "단국대학교"
+      period: "2019.03 – 2025.02"
+
+publications:
+  title: "Publications"
+  labels:
+    journal: "Journal"
+    international: "Int'l Conference"
+    domestic: "Domestic Conference"
+    poster: "Poster"
+    in_korean: ""            # 한국어판에서는 표시 안 함
+  items:
+    - title: "gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS"
+      venue: "IEEE Access"
+      year: "2026"
+      type: journal
+      status: "심사 중"
+    - title: "Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석"
+      venue: "KCC 2026 (한국컴퓨터종합학술대회)"
+      year: "2026"
+      type: domestic
+      award: "우수발표논문상"
+      korean: true
+    - title: "Sentra: A Kubernetes Sidecar-Based Multi-Layer Security Gateway for Protecting LLM APIs"
+      venue: "MobiSec 2025"
+      year: "2025"
+      type: poster
+      award: "KIISC Best Poster Award"
+    - title: "KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments"
+      venue: "ICTC 2025"
+      year: "2025"
+      type: international
+    - title: "쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석"
+      venue: "ASK 2025 (한국정보처리학회 춘계학술발표대회)"
+      year: "2025"
+      type: domestic
+      note: "2저자"
+      korean: true
+    - title: "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
+      venue: "ACK 2024 (한국정보처리학회 추계학술발표대회)"
+      year: "2024"
+      type: domestic
+      korean: true
+
+awards:
+  title: "Awards"
+  items:
+    - name: "우수발표논문상"
+      org: "KCC 2026 · 한국정보과학회"
+      year: "2026"
+    - name: "Best Poster Award"
+      org: "MobiSec 2025 · 한국정보보호학회(KIISC)"
+      year: "2025"
+
+# 비어 있으면 표시되지 않음. 형식 예시:
+#   - title: "프로젝트 이름"
+#     period: "2025.01 – 2025.06"
+#     org: "소속/팀 (선택)"
+#     url: "https://github.com/... (선택)"
+#     bullets: ["한 일 1", "한 일 2"]
+#     tags: ["Go", "eBPF"]
+projects:
+  title: "Projects"
+  items: []
+
+# 발표, 멘토링, 대외활동 등. 형식은 projects 와 동일
+activities:
+  title: "Activities"
+  items: []
+
+skills:
+  title: "Skills"
+  groups:
+    - name: "Systems / Infra"
+      items: ["Kubernetes", "Docker", "Linux", "eBPF", "Service Mesh / mTLS"]
+    - name: "GPU / ML"
+      items: ["PyTorch", "분산 학습 (DDP, NCCL)", "GPU Time-Slicing / MPS", "LLM 서빙"]
+    - name: "Languages"
+      items: ["Python", "Go", "C/C++", "Bash"]

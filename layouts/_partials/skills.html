@@ -1,0 +1,11 @@
+{{- /* 기술. 사용: partial "skills.html" $cv.skills */ -}}
+<div class="skills">
+  {{- range .groups }}
+  <div class="skill-group">
+    <div class="skill-name">{{ .name }}</div>
+    <ul class="tags">
+      {{- range .items }}<li>{{ . }}</li>{{ end }}
+    </ul>
+  </div>
+  {{- end }}
+</div>

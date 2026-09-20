@@ -1,0 +1,163 @@
+# =====================================================================
+# English CV content. Korean version: data/cv/ko.yaml (same structure)
+# - Sections with empty items are hidden
+# - summary.body and bullets accept Markdown
+# =====================================================================
+
+meta:
+  skip: "Skip to content"
+  print: "Save as PDF"
+  theme: "Toggle theme"
+  language: "Language"
+  updated: "Last updated"
+  present: "Present"
+
+profile:
+  name: "Jaeyoung"
+  headline: "M.S. student working on AI infrastructure"
+  affiliation: "Dept. of AI Convergence, Dankook University · BoanLab"
+  contact:
+    - icon: mail
+      label: "leeja042499@gmail.com"
+      href: "mailto:leeja042499@gmail.com"
+    - icon: github
+      label: "github.com/mkpong"
+      href: "https://github.com/mkpong"
+  focus_title: "Focus"
+  focus:
+    - "Distributed Training"
+    - "GPU Scheduling"
+    - "eBPF Observability"
+    - "Kubernetes"
+    - "LLM Serving Security"
+
+summary:
+  title: "Summary"
+  body: |
+    I am an M.S. student at BoanLab, Department of AI Convergence, Dankook University, working on AI infrastructure.
+    My work focuses on GPU workloads on Kubernetes: **observing and quantifying GPU interference with eBPF** under
+    time-slicing/MPS sharing, and **runtime security for LLM serving** (sidecar gateways, policy automation).
+
+    Training and serving large models ultimately comes down to **how efficiently a handful of GPUs can be driven**.
+    That is why I care more about what sits below the framework — schedulers, networking, memory, and kernels — than the framework itself.
+
+experience:
+  title: "Experience"
+  items:
+    - role: "Graduate Researcher (M.S.)"
+      org: "BoanLab, Dankook University"
+      period: "Mar 2025 – Present"
+      bullets:
+        - "Quantifying and attributing GPU interference under time-slicing / MPS sharing (gSonar, under review at IEEE Access)"
+        - "eBPF-based per-pod GPU observability and interference analysis (KCC 2026, Best Presentation Award)"
+        - "Sentra: a Kubernetes sidecar-based multi-layer security gateway for LLM APIs (MobiSec 2025, Best Poster Award)"
+        - "KubeScribe: LLM-driven automation of runtime security policies in cloud-native environments (ICTC 2025)"
+        - "Network performance analysis of mTLS in Kubernetes service meshes (ASK 2025)"
+      tags: ["GPU", "eBPF", "Kubernetes", "LLM Security"]
+    - role: "Undergraduate Researcher"
+      org: "BoanLab, Dankook University"
+      period: "Aug 2024 – Feb 2025"
+      bullets:
+        - "Introductory research on distributed training and GPUs"
+        - "Performance analysis of parallelization techniques for large NLP models (ACK 2024)"
+      tags: ["Distributed Training", "GPU"]
+    - role: "Undergraduate Researcher"
+      org: "CIS Lab, Dankook University"
+      period: "Jul 2023 – Jul 2024"
+      bullets:
+        - "Computer vision solution for the visually impaired"
+        - "ML model training"
+        - "Embedded board programming on Arduino"
+      tags: ["Computer Vision", "Embedded"]
+
+education:
+  title: "Education"
+  items:
+    - role: "M.S. · Dept. of AI Convergence"
+      org: "Graduate School, Dankook University"
+      period: "Mar 2025 – Present"
+      bullets:
+        - "Lab: BoanLab"
+    - role: "B.S. · Computer Science and Engineering"
+      org: "Dankook University"
+      period: "Mar 2019 – Feb 2025"
+
+publications:
+  title: "Publications"
+  labels:
+    journal: "Journal"
+    international: "Int'l Conference"
+    domestic: "Domestic Conference"
+    poster: "Poster"
+    in_korean: "in Korean"
+  items:
+    - title: "gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS"
+      venue: "IEEE Access"
+      year: "2026"
+      type: journal
+      status: "Under review"
+    - title: "Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석"
+      title_en: "eBPF-Based Per-Pod Observation and Interference Analysis in Time-Sliced GPU Sharing Environments"
+      venue: "KCC 2026 (Korea Computer Congress)"
+      year: "2026"
+      type: domestic
+      award: "Best Presentation Award"
+      korean: true
+    - title: "Sentra: A Kubernetes Sidecar-Based Multi-Layer Security Gateway for Protecting LLM APIs"
+      venue: "MobiSec 2025"
+      year: "2025"
+      type: poster
+      award: "KIISC Best Poster Award"
+    - title: "KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments"
+      venue: "ICTC 2025"
+      year: "2025"
+      type: international
+    - title: "쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석"
+      title_en: "Network Performance Analysis of mTLS Adoption in Kubernetes-Based Service Mesh Environments"
+      venue: "ASK 2025 (KIPS Spring Conference)"
+      year: "2025"
+      type: domestic
+      note: "2nd author"
+      korean: true
+    - title: "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
+      title_en: "Performance Analysis of Parallelization Techniques for Large-Scale NLP Models"
+      venue: "ACK 2024 (KIPS Fall Conference)"
+      year: "2024"
+      type: domestic
+      korean: true
+
+awards:
+  title: "Awards"
+  items:
+    - name: "Best Presentation Award"
+      org: "KCC 2026 · Korean Institute of Information Scientists and Engineers (KIISE)"
+      year: "2026"
+    - name: "Best Poster Award"
+      org: "MobiSec 2025 · Korea Institute of Information Security & Cryptology (KIISC)"
+      year: "2025"
+
+# Hidden when empty. Format:
+#   - title: "Project name"
+#     period: "Jan 2025 – Jun 2025"
+#     org: "Team / affiliation (optional)"
+#     url: "https://github.com/... (optional)"
+#     bullets: ["What you did 1", "What you did 2"]
+#     tags: ["Go", "eBPF"]
+projects:
+  title: "Projects"
+  items: []
+
+# Talks, mentoring, community work. Same format as projects
+activities:
+  title: "Activities"
+  items: []
+
+skills:
+  title: "Skills"
+  groups:
+    - name: "Systems / Infra"
+      items: ["Kubernetes", "Docker", "Linux", "eBPF", "Service Mesh / mTLS"]
+    - name: "GPU / ML"
+      items: ["PyTorch", "Distributed Training (DDP, NCCL)", "GPU Time-Slicing / MPS", "LLM Serving"]
+    - name: "Languages"
+      items: ["Python", "Go", "C/C++", "Bash"]

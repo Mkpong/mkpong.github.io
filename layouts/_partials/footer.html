@@ -1,0 +1,6 @@
+{{- $p := .page }}{{ $cv := .cv }}
+<footer class="site-footer">
+  <span>{{ site.Copyright }}</span>
+  <span class="sep">·</span>
+  <span>{{ $cv.meta.updated }} {{ now.Format "2006-01-02" }}</span>
+</footer>

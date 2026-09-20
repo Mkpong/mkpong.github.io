@@ -1,0 +1,34 @@
+{{- $p := .page }}{{ $cv := .cv }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $cv.profile.name }} — CV</title>
+<meta name="description" content="{{ site.Params.description }}">
+<meta name="author" content="{{ site.Params.author }}">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="{{ site.Params.assets.theme_color }}">
+<link rel="canonical" href="{{ $p.Permalink }}">
+{{- range $p.AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+<link rel="alternate" hreflang="x-default" href="{{ site.Home.Permalink }}">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{ $cv.profile.name }} — CV">
+<meta property="og:description" content="{{ site.Params.description }}">
+<meta property="og:url" content="{{ $p.Permalink }}">
+<meta property="og:locale" content="{{ .page.Language.Locale }}">
+<link rel="icon" href="{{ site.Params.assets.favicon | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+<script>
+  // 테마 깜빡임 방지: CSS 로드 전에 저장된 선택을 적용
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>

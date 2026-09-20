@@ -1,0 +1,12 @@
+{{- /* 수상. 사용: partial "awards.html" $cv.awards */ -}}
+<ul class="awards">
+  {{- range .items }}
+  <li class="award">
+    <span class="award-year">{{ .year }}</span>
+    <span class="award-body">
+      <span class="award-name">{{ partial "icon.html" "award" }}{{ .name }}</span>
+      {{- with .org }}<span class="award-org">{{ . }}</span>{{ end }}
+    </span>
+  </li>
+  {{- end }}
+</ul>

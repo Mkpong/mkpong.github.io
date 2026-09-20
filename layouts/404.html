@@ -1,12 +1,7 @@
 {{- define "main" }}
-<div class="not-found-page">
+<main class="content not-found">
   <p class="nf-code" aria-hidden="true">404</p>
   <h1>Page not found</h1>
-  <p>The page may have moved or no longer exists.</p>
-  <div class="actions">
-    <a class="button" href="{{ "" | relLangURL }}">Home</a>
-    <a class="button" href="{{ "search/" | relLangURL }}">Search</a>
-    <a class="button" href="{{ "archives/" | relLangURL }}">Archive</a>
-  </div>
-</div>
+  <p><a href="{{ site.Home.Permalink }}">← {{ site.Title }}</a></p>
+</main>
 {{- end }}

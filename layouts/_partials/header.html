@@ -1,0 +1,32 @@
+{{- $p := .page }}{{ $cv := .cv }}
+{{- $order := slice "summary" "experience" "education" "publications" "awards" "projects" "activities" "skills" }}
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="{{ $p.Permalink }}">{{ $cv.profile.name }}</a>
+    <nav class="site-nav" aria-label="Sections">
+      {{- range $order }}
+      {{- $sec := index $cv . }}
+      {{- $has := false }}
+      {{- if eq . "summary" }}{{ $has = ne (trim $sec.body " \n") "" }}
+      {{- else if eq . "skills" }}{{ $has = gt (len $sec.groups) 0 }}
+      {{- else }}{{ $has = gt (len $sec.items) 0 }}{{ end }}
+      {{- if $has }}<a href="#{{ . }}">{{ $sec.title }}</a>{{ end }}
+      {{- end }}
+    </nav>
+    <div class="controls">
+      <div class="lang-switch" role="group" aria-label="{{ $cv.meta.language }}">
+        {{- range $p.AllTranslations }}
+        <a href="{{ .Permalink }}" hreflang="{{ .Language.Lang }}" data-lang="{{ .Language.Lang }}"
+          {{- if eq .Language.Lang $p.Language.Lang }} class="active" aria-current="true"{{ end }}>{{ .Language.Lang | upper }}</a>
+        {{- end }}
+      </div>
+      <button class="icon-btn" id="theme-toggle" type="button" title="{{ $cv.meta.theme }}" aria-label="{{ $cv.meta.theme }}">
+        <span class="icon-sun">{{ partial "icon.html" "sun" }}</span>
+        <span class="icon-moon">{{ partial "icon.html" "moon" }}</span>
+      </button>
+      <button class="icon-btn print-btn" id="print" type="button" title="{{ $cv.meta.print }}" aria-label="{{ $cv.meta.print }}">
+        {{ partial "icon.html" "print" }}<span class="print-label">{{ $cv.meta.print }}</span>
+      </button>
+    </div>
+  </div>
+</header>

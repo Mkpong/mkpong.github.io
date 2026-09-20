@@ -37,11 +37,10 @@ jobs:
           sudo dpkg -i "${{ runner.temp }}/hugo.deb"
           hugo version
 
-      - name: Checkout (with theme submodule)
+      - name: Checkout
         uses: actions/checkout@v5
         with:
-          submodules: recursive
-          fetch-depth: 0   # .Lastmod / GitInfo 용 전체 히스토리
+          fetch-depth: 0   # GitInfo 용 전체 히스토리
 
       - name: Setup Pages
         id: pages

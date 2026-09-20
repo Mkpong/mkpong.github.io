@@ -1,0 +1,22 @@
+{{- /* 논문 목록. 사용: partial "publications.html" $cv.publications */ -}}
+{{- $labels := .labels }}
+<ol class="pubs">
+  {{- range .items }}
+  <li class="pub">
+    <div class="pub-title">
+      {{- with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end -}}
+      {{ .title }}
+      {{- if .url }}</a>{{ end -}}
+    </div>
+    {{- with .title_en }}<div class="pub-title-alt">{{ . }}</div>{{ end }}
+    <div class="pub-meta">
+      <span class="pub-venue">{{ .venue }}{{ with .year }}, {{ . }}{{ end }}</span>
+      {{- with .type }}{{ with index $labels . }}<span class="badge">{{ . }}</span>{{ end }}{{ end }}
+      {{- if and .korean $labels.in_korean }}<span class="badge">{{ $labels.in_korean }}</span>{{ end }}
+      {{- with .note }}<span class="badge">{{ . }}</span>{{ end }}
+      {{- with .award }}<span class="badge badge-award">{{ partial "icon.html" "award" }}{{ . }}</span>{{ end }}
+      {{- with .status }}<span class="badge badge-status">{{ . }}</span>{{ end }}
+    </div>
+  </li>
+  {{- end }}
+</ol>

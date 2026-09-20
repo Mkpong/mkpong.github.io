@@ -1,204 +1,51 @@
 baseURL = "https://mkpong.github.io/"
-locale = "ko-kr"   # Hugo 0.158+ (구 languageCode)
-defaultContentLanguage = "ko"
-title = "Jaeyoung Tech"
-theme = "PaperMod"
+title = "Jaeyoung"
 copyright = "© 2026 Jaeyoung"
 
-# 한국어(CJK) 본문 글자 수 / 요약 길이 계산을 정확하게
+# ---------- 다국어: / = 한국어, /en/ = 영어 ----------
+defaultContentLanguage = "ko"
+defaultContentLanguageInSubdir = false
 hasCJKLanguage = true
 timeZone = "Asia/Seoul"
 enableRobotsTXT = true
-enableGitInfo = true   # 글 파일의 마지막 커밋 시각을 수정일(lastmod)로 사용
-enableEmoji = true
-buildDrafts = false
-buildFuture = false
-buildExpired = false
+enableGitInfo = true
 
-[pagination]
-  pagerSize = 10
+# CV 는 단일 페이지 — 블로그 성격의 페이지 종류는 만들지 않음
+disableKinds = ["taxonomy", "term", "section", "RSS"]
+
+[languages]
+  [languages.ko]
+    label = "한국어"
+    locale = "ko-KR"
+    weight = 1
+    title = "Jaeyoung"
+    [languages.ko.params]
+      description = "AI 인프라를 공부하는 석사과정 학생 Jaeyoung 의 이력서"
+  [languages.en]
+    label = "English"
+    locale = "en-US"
+    weight = 2
+    title = "Jaeyoung"
+    [languages.en.params]
+      description = "CV of Jaeyoung, an M.S. student working on AI infrastructure"
+
+[outputs]
+  home = ["HTML"]
 
 [minify]
   disableXML = true
   minifyOutput = true
 
-# JSON 출력은 PaperMod 검색(Fuse.js)이 읽는 index.json 생성용
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
-
-[taxonomies]
-  category = "categories"
-  tag = "tags"
-  series = "series"
-
-# "함께 읽기" 추천 기준 (layouts/_partials/extend_post_content.html)
-[related]
-  includeNewer = true
-  threshold = 60
-  toLower = true
-  [[related.indices]]
-    name = "series"
-    weight = 100
-  [[related.indices]]
-    name = "tags"
-    weight = 80
-  [[related.indices]]
-    name = "categories"
-    weight = 40
-  [[related.indices]]
-    name = "date"
-    weight = 10
-
 [params]
   env = "production"
-  description = "AI 인프라를 공부하는 대학원생의 기술 블로그"
   author = "Jaeyoung"
-  keywords = ["AI Infrastructure", "MLOps", "GPU", "Distributed Training", "Kubernetes"]
-  mainSections = ["posts"]
-  defaultTheme = "auto"
-  disableThemeToggle = false
-  DateFormat = "2006-01-02"   # 로케일 영향 없는 ISO 표기
-
-  ShowReadingTime = true
-  ShowWordCount = false
-  ShowShareButtons = false
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowRssButtonInSectionTermList = true
-  ShowFullTextinRSS = true
-  ShowToc = true
-  TocOpen = false
-  hidemeta = false
-  hideSummary = false
-  disableSpecial1stPost = true
-  disableScrollToTop = false
-  # 댓글: params.giscus 가 채워져 있을 때만 실제로 렌더링됨 (layouts/_partials/comments.html)
-  comments = true
-
-  # 사이트 전체에서 KaTeX CSS를 항상 로드하려면 true.
-  # false면 글 front matter의 `math: true` 또는 수식 감지 시에만 로드.
-  math = false
-
-  # ---------- 홈 화면 프로필 (layouts/home.html) ----------
-  [params.profile]
-    name = "Jaeyoung"
-    role = "M.S. Student · BoanLab, Dankook Univ."
-    tagline = "GPU 클러스터 위에서 모델이 **잘, 그리고 싸게** 돌아가게 만드는 일에 관심이 있습니다."
-    bio = """
-분산 학습, 모델 서빙, GPU 스케줄링 같은 AI 인프라 주제를 공부하면서 배운 것과 삽질한 기록을 남깁니다.
-한국어로 정리된 자료가 부족하다고 느낀 내용을 우선적으로 씁니다.
-"""
-    # GitHub 프로필 사진. 직접 올린 이미지를 쓰려면 static/ 에 넣고 "/images/avatar.jpg" 처럼 지정
-    avatar = "https://github.com/mkpong.png"
-    interests = ["Distributed Training", "Model Serving", "GPU Scheduling", "Kubernetes", "CUDA", "MLOps"]
-
-  [params.sidebar]
-    tagCount = 20     # number of tags shown in the sidebar
-
-  # ---------- 댓글 (giscus) ----------
-  # https://giscus.app 에서 저장소를 설정한 뒤 아래 4개 값을 채우면 글 하단에 댓글이 붙는다.
-  # 비어 있으면 아무것도 렌더링되지 않는다.
-  [params.giscus]
-    repo = ""
-    repoId = ""
-    category = ""
-    categoryId = ""
-
+  # 내용은 data/cv/ko.yaml, data/cv/en.yaml 에서 편집
+  avatar = "https://github.com/mkpong.png"
+  github = "https://github.com/mkpong"
   [params.assets]
-    # highlight.js 대신 Hugo 내장 Chroma 사용 (빌드 시 하이라이팅, JS 불필요)
-    disableHLJS = true
-    disableFingerprinting = false
     favicon = "/favicon.svg"
-    safari_pinned_tab = "/favicon.svg"
-
-  [params.label]
-    text = "Jaeyoung Tech"
-
-  [params.footer]
-    text = "AI 인프라 공부 기록"
-
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/mkpong"
-  [[params.socialIcons]]
-    name = "email"
-    url = "mailto:leeja042499@gmail.com"
-  [[params.socialIcons]]
-    name = "rss"
-    url = "/index.xml"
-
-  [params.editPost]
-    URL = "https://github.com/mkpong/mkpong.github.io/tree/main/content"
-    Text = "Suggest an edit"
-    appendFilePath = true
-
-  # Fuse.js 검색 옵션
-  [params.fuseOpts]
-    isCaseSensitive = false
-    shouldSort = true
-    location = 0
-    distance = 1000
-    threshold = 0.4
-    minMatchCharLength = 0
-    limit = 20
-    keys = ["title", "permalink", "summary", "content"]
-
-[menu]
-  [[menu.main]]
-    identifier = "posts"
-    name = "Posts"
-    url = "/posts/"
-    weight = 10
-  [[menu.main]]
-    identifier = "categories"
-    name = "Categories"
-    url = "/categories/"
-    weight = 20
-  [[menu.main]]
-    identifier = "series"
-    name = "Series"
-    url = "/series/"
-    weight = 30
-  [[menu.main]]
-    identifier = "archives"
-    name = "Archive"
-    url = "/archives/"
-    weight = 40
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 50
-  [[menu.main]]
-    identifier = "search"
-    name = "Search"
-    url = "/search/"
-    weight = 60
+    theme_color = "#1e1e1e"
 
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-    [markup.goldmark.extensions]
-      # KaTeX 수식: 마크다운 파서가 수식 구간을 건드리지 않게 통과시킴
-      # → layouts/_markup/render-passthrough.html 에서 transform.ToMath 로 빌드 시 렌더링
-      [markup.goldmark.extensions.passthrough]
-        enable = true
-        [markup.goldmark.extensions.passthrough.delimiters]
-          block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)'], ['$', '$']]
-
-  [markup.highlight]
-    # noClasses=false → 인라인 style 대신 CSS 클래스 사용 (PaperMod가 chroma 스타일 제공)
-    noClasses = false
-    codeFences = true
-    guessSyntax = false
-    lineNos = false
-    lineNumbersInTable = true
-    tabWidth = 4
-
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 4
-    ordered = false
+  [markup.goldmark.renderer]
+    unsafe = true

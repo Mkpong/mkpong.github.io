@@ -1,0 +1,26 @@
+{{- /* 타임라인 항목 목록. 사용: partial "entries.html" (dict "items" $items) */ -}}
+<div class="entries">
+  {{- range .items }}
+  <article class="entry">
+    <div class="entry-period">{{ .period }}</div>
+    <div class="entry-body">
+      {{- $label := .title | default .role }}
+      <h3 class="entry-title">
+        {{- with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $label }}</a>{{ else }}{{ $label }}{{ end -}}
+      </h3>
+      {{- with .org }}<div class="entry-org">{{ . }}</div>{{ end }}
+      {{- with .desc }}<div class="entry-desc">{{ . | markdownify }}</div>{{ end }}
+      {{- with .bullets }}
+      <ul class="entry-bullets">
+        {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+      </ul>
+      {{- end }}
+      {{- with .tags }}
+      <ul class="tags">
+        {{- range . }}<li>{{ . }}</li>{{ end }}
+      </ul>
+      {{- end }}
+    </div>
+  </article>
+  {{- end }}
+</div>

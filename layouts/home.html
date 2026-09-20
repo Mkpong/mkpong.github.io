@@ -1,54 +1,84 @@
 {{- define "main" }}
-{{- /* 홈: 글 목록 (프로필·카테고리는 사이드바가 담당) */ -}}
-{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{- $pages = where $pages "Params.hiddenInHomeList" "!=" true }}
-{{- $paginator := .Paginate $pages }}
+{{- $cv := index hugo.Data.cv .Language.Lang }}
+{{- $pf := $cv.profile }}
 
-<header class="page-header home-header">
-  <h1>Recent Posts</h1>
-  {{- with site.Params.description }}<div class="post-description">{{ . }}</div>{{ end }}
-</header>
-
-{{- range $paginator.Pages }}
-<article class="post-entry">
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">{{ .Title }}</h2>
-  </header>
-  {{- if not (.Param "hideSummary") }}
-  <div class="entry-content">
-    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}…{{ end }}</p>
+<aside class="profile">
+  {{- with site.Params.avatar }}
+  <img class="avatar" src="{{ . }}" alt="{{ $pf.name }}" width="112" height="112" decoding="async" referrerpolicy="no-referrer">
+  {{- end }}
+  <h1 class="name">{{ $pf.name }}</h1>
+  {{- with $pf.headline }}<p class="headline">{{ . }}</p>{{ end }}
+  {{- with $pf.affiliation }}<p class="affiliation">{{ . }}</p>{{ end }}
+  {{- with $pf.contact }}
+  <ul class="contact">
+    {{- range . }}
+    <li><a href="{{ .href }}"{{ if hasPrefix .href "http" }} target="_blank" rel="noopener me"{{ end }}>{{ partial "icon.html" (.icon | default "link") }}<span>{{ .label }}</span></a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- with $pf.focus }}
+  <div class="focus">
+    {{- with $pf.focus_title }}<div class="focus-title">{{ . }}</div>{{ end }}
+    <ul class="tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
   </div>
   {{- end }}
-  <footer class="entry-footer">
-    {{- partial "post_meta.html" . -}}
-    {{- with .GetTerms "categories" }}
-    <span class="entry-cats">
-      {{- range . }}<span>{{ .LinkTitle }}</span>{{ end }}
-    </span>
-    {{- end }}
-    {{- with .GetTerms "tags" }}
-    <span class="entry-tags">
-      {{- range . }}<span>#{{ .LinkTitle }}</span>{{ end }}
-    </span>
-    {{- end }}
-  </footer>
-  <a class="entry-link" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-</article>
-{{- else }}
-<p class="empty">No posts yet.</p>
-{{- end }}
+</aside>
 
-{{- if gt $paginator.TotalPages 1 }}
-<footer class="page-footer">
-  <nav class="pagination">
-    {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">«&nbsp;{{ i18n "prev_page" }}</a>
-    {{- end }}
-    {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }}&nbsp;»</a>
-    {{- end }}
-  </nav>
-</footer>
-{{- end }}
+<main class="content">
+  {{- with $cv.summary }}{{ if ne (trim .body " \n") "" }}
+  <section id="summary" class="section">
+    <h2>{{ .title }}</h2>
+    <div class="prose">{{ .body | markdownify }}</div>
+  </section>
+  {{- end }}{{ end }}
 
-{{- end }}{{/* end main */}}
+  {{- with $cv.experience }}{{ if .items }}
+  <section id="experience" class="section">
+    <h2>{{ .title }}</h2>
+    {{- partial "entries.html" (dict "items" .items) }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- with $cv.education }}{{ if .items }}
+  <section id="education" class="section">
+    <h2>{{ .title }}</h2>
+    {{- partial "entries.html" (dict "items" .items) }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- with $cv.publications }}{{ if .items }}
+  <section id="publications" class="section">
+    <h2>{{ .title }} <span class="count">{{ len .items }}</span></h2>
+    {{- partial "publications.html" . }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- with $cv.awards }}{{ if .items }}
+  <section id="awards" class="section">
+    <h2>{{ .title }}</h2>
+    {{- partial "awards.html" . }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- with $cv.projects }}{{ if .items }}
+  <section id="projects" class="section">
+    <h2>{{ .title }}</h2>
+    {{- partial "entries.html" (dict "items" .items) }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- with $cv.activities }}{{ if .items }}
+  <section id="activities" class="section">
+    <h2>{{ .title }}</h2>
+    {{- partial "entries.html" (dict "items" .items) }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- with $cv.skills }}{{ if .groups }}
+  <section id="skills" class="section">
+    <h2>{{ .title }}</h2>
+    {{- partial "skills.html" . }}
+  </section>
+  {{- end }}{{ end }}
+</main>
+{{- end }}
