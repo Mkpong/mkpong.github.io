@@ -11,7 +11,7 @@
   --accent: #1a1a1a;
   --accent-contrast: #ffffff;
   --hover: #f3f3f3;
-  --max: 720px;
+  --max: 900px;
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
     "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
   color-scheme: light;
@@ -193,7 +193,7 @@ img { max-width: 100%; }
 
 /* ---------- 기술 ---------- */
 .skills { display: grid; gap: 6px; }
-.skill-row { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; font-size: 14.5px; }
+.skill-row { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 16px; font-size: 14.5px; }
 .skill-row dt { color: var(--muted); }
 
 /* ---------- 푸터 / 404 ---------- */

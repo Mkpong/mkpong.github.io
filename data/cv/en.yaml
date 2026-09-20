@@ -135,6 +135,10 @@ awards:
     - name: "Best Poster Award"
       org: "MobiSec 2025 · Korea Institute of Information Security & Cryptology (KIISC)"
       year: "2025"
+    - name: "Sponsor Company Award (42Maru)"
+      org: "2024 SW-Centered University Digital Competition, SW Track · Software-Centered University Council"
+      year: "2024"
+      desc: "Finalist · Team 단컴한 인생 · Project Ghost Band"
 
 # Hidden when empty. Format:
 #   - title: "Project name"

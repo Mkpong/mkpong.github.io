@@ -22,7 +22,7 @@ summary:        # 자기소개 (마크다운)
 experience:     # 경력 — role / org / period / bullets / tags
 education:      # 학력 — 형식은 experience 와 동일
 publications:   # 논문 — title / venue / year / type / award / status / note / url / korean / title_en
-awards:         # 수상 — name / org / year
+awards:         # 수상 — name / org / year / desc(선택: 팀·프로젝트 등 한 줄)
 projects:       # 프로젝트 — items 가 비어 있으면 섹션 자체가 숨겨짐
 activities:     # 발표·멘토링 등 — projects 와 동일
 skills:         # 기술 — groups: [{name, items}]

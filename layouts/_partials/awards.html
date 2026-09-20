@@ -7,6 +7,7 @@
       {{- with .year }}<span class="entry-period">{{ . }}</span>{{ end }}
     </div>
     {{- with .org }}<div class="entry-org">{{ . }}</div>{{ end }}
+    {{- with .desc }}<div class="entry-desc">{{ . | markdownify }}</div>{{ end }}
   </li>
   {{- end }}
 </ul>

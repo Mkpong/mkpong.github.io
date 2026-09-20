@@ -132,6 +132,10 @@ awards:
     - name: "Best Poster Award"
       org: "MobiSec 2025 · 한국정보보호학회(KIISC)"
       year: "2025"
+    - name: "후원기업상 (포티투마루)"
+      org: "2024 SW중심대학 디지털 경진대회 SW부문 · 소프트웨어중심대학협의회"
+      year: "2024"
+      desc: "본선 진출 · 팀 단컴한 인생 · 프로젝트 Ghost Band"
 
 # 비어 있으면 표시되지 않음. 형식 예시:
 #   - title: "프로젝트 이름"
