@@ -89,13 +89,24 @@ publications:
     domestic: "Domestic Conference"
     poster: "Poster"
     in_korean: "in Korean"
+    under_review: "Under Review"
+    published: "Published"
+  # Items with a status are listed under "Under Review" (delete the status line once accepted)
   items:
     - title: "gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS"
       authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       venue: "IEEE Access"
       year: "2026"
       type: journal
-      status: "Under review"
+      status: "review"
+    - title: "ckptGuard: 구조-인지 보호와 스트리밍 복원을 통한 LLM 추론 체크포인트 보안"
+      title_en: "ckptGuard: Securing LLM Inference Checkpoints with Structure-Aware Protection and Streaming Restore"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
+      venue: "ACK 2026 (KIPS Fall Conference)"
+      year: "2026"
+      type: domestic
+      status: "review"
+      korean: true
     - title: "Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석"
       authors: ["Jaeyoung Lee", "Myeongdu Gim", "Jaehyun Nam"]
       title_en: "eBPF-Based Per-Pod Observation and Interference Analysis in Time-Sliced GPU Sharing Environments"

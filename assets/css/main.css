@@ -192,7 +192,8 @@ img { max-width: 100%; }
 .sep { color: var(--faint); }
 .pub-award { display: inline-flex; align-items: center; gap: 4px; color: var(--text); font-weight: 500; }
 .pub-award svg { width: 13px; height: 13px; }
-.pub-status { font-style: italic; }
+.pub-group { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.pubs + .pub-group { margin-top: 20px; }
 
 /* ---------- 수상 ---------- */
 .awards { display: grid; gap: 10px; }

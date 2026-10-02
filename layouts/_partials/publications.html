@@ -1,5 +1,12 @@
-{{- /* 논문 목록. 사용: partial "publications.html" $cv.publications */ -}}
+{{- /* 논문 목록. 사용: partial "publications.html" $cv.publications
+       status 가 있는 항목은 "심사 중" 묶음으로 분리되고 연도를 표시하지 않음 */ -}}
 {{- $labels := .labels }}
+{{- $review := where .items "status" "!=" nil }}
+{{- $published := where .items "status" "==" nil }}
+{{- range slice (dict "title" $labels.under_review "items" $review "review" true) (dict "title" $labels.published "items" $published "review" false) }}
+{{- if .items }}
+{{- $review := .review }}
+<h3 class="pub-group">{{ .title }}</h3>
 <ol class="pubs">
   {{- range .items }}
   <li class="pub">
@@ -15,13 +22,14 @@
     </div>
     {{- end }}
     <div class="pub-meta">
-      <span class="pub-venue">{{ .venue }}{{ if and .year (not (in .venue .year)) }}, {{ .year }}{{ end }}</span>
+      <span class="pub-venue">{{ .venue }}{{ if and .year (not $review) (not (in .venue .year)) }}, {{ .year }}{{ end }}</span>
       {{- with .type }}{{ with index $labels . }}<span class="sep">·</span><span>{{ . }}</span>{{ end }}{{ end }}
       {{- if and .korean $labels.in_korean }}<span class="sep">·</span><span>{{ $labels.in_korean }}</span>{{ end }}
       {{- with .note }}<span class="sep">·</span><span>{{ . }}</span>{{ end }}
       {{- with .award }}<span class="sep">·</span><span class="pub-award">{{ partial "icon.html" "award" }}{{ . }}</span>{{ end }}
-      {{- with .status }}<span class="sep">·</span><span class="pub-status">{{ . }}</span>{{ end }}
     </div>
   </li>
   {{- end }}
 </ol>
+{{- end }}
+{{- end }}
