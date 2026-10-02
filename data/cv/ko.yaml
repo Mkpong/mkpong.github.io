@@ -182,6 +182,20 @@ projects:
         - "VRAM 초과 시 입장 큐잉, 세션 일시정지 시 GPU 반납, DCGM/HAMi 지표 기반 유휴 세션 자동 정리"
         - "FastAPI 백엔드 · Go(controller-runtime) 오퍼레이터 · React/TypeScript 프론트엔드 · Helm 배포, 멀티 클러스터 지원"
       tags: ["Kubernetes", "GPU", "HAMi", "Go", "Python", "React"]
+    - title: "KloudChat"
+      period: "2026 – 현재"
+      org: "BoanLab"
+      url: "https://github.com/boanlab/KloudChat"
+      links:
+        - label: "GitHub"
+          href: "https://github.com/boanlab/KloudChat"
+          icon: github
+      desc: "채팅·보고서·슬라이드·이미지·오디오/비디오를 한곳에서 만드는 셀프 호스팅 생성형 AI 워크스페이스. 시스템 설계와 배포·서버 운영 담당."
+      bullets:
+        - "워크스페이스(KloudChat)와 모델·도구 백엔드(KloudChat-LLM)를 게이트웨이 URL 하나로 분리하는 구조 설계: 백엔드 장애 시에도 로그인·기록·워크스페이스는 유지"
+        - "사용자별 LiteLLM 가상 키로 모델 호출 비용과 감사 로그를 개인 단위로 추적하고, 월 크레딧 한도를 매 턴 사전 검사"
+        - "Docker Compose 기반 서비스 배포(웹 · API · PostgreSQL · PDF 렌더러) 및 서버 운영"
+      tags: ["LLM", "LiteLLM", "Docker", "PostgreSQL", "FastAPI"]
     - title: "gSonar"
       period: "2025 – 2026"
       org: "BoanLab"

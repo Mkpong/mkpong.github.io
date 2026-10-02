@@ -186,6 +186,20 @@ projects:
         - "Admission queueing when VRAM is oversubscribed, pause-with-GPU-return, idle reaping driven by DCGM/HAMi metrics"
         - "FastAPI backend · Go (controller-runtime) operator · React/TypeScript frontend · Helm deployment, multi-cluster support"
       tags: ["Kubernetes", "GPU", "HAMi", "Go", "Python", "React"]
+    - title: "KloudChat"
+      period: "2026 – Present"
+      org: "BoanLab"
+      url: "https://github.com/boanlab/KloudChat"
+      links:
+        - label: "GitHub"
+          href: "https://github.com/boanlab/KloudChat"
+          icon: github
+      desc: "A self-hosted generative AI workspace for chat, reports, slides, images, and audio/video. Responsible for system design, deployment, and server operations."
+      bullets:
+        - "Designed the split between the workspace (KloudChat) and the model/tool backend (KloudChat-LLM) behind a single gateway URL, so sign-in, history, and workspace stay up when the backend is down"
+        - "Per-user LiteLLM virtual keys for per-person spend and audit logs, with monthly credit limits checked before every turn"
+        - "Docker Compose deployment (web · API · PostgreSQL · PDF renderer) and server operations"
+      tags: ["LLM", "LiteLLM", "Docker", "PostgreSQL", "FastAPI"]
     - title: "gSonar"
       period: "2025 – 2026"
       org: "BoanLab"
