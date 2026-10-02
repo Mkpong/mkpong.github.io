@@ -48,18 +48,17 @@ experience:
       org: "BoanLab, 단국대학교"
       period: "2025.03 – 현재"
       bullets:
-        - "Time-Slicing / MPS 공유 환경에서의 GPU 간섭 정량화 및 원인 귀속 연구 (gSonar, IEEE Access 심사 중)"
-        - "eBPF 기반 파드 단위 GPU 관측 및 간섭 분석 (KCC 2026, 우수발표논문상)"
-        - "Kubernetes 사이드카 기반 LLM API 다층 보안 게이트웨이 Sentra (MobiSec 2025, Best Poster Award)"
-        - "LLM 기반 클라우드 네이티브 런타임 보안 정책 자동화 KubeScribe (ICTC 2025)"
-        - "서비스 메시 환경에서 mTLS 적용에 따른 네트워크 성능 분석 (ASK 2025)"
+        - "GPU 공유 간섭: Time-Slicing / MPS 환경의 간섭 정량화·원인 귀속과 eBPF 기반 파드 단위 관측 (gSonar)"
+        - "GPU 공유 플랫폼: Kubernetes 위 인터랙티브 워크로드용 GPU 공유 플랫폼 개발 (gShare)"
+        - "LLM 서빙 보안: 사이드카 기반 LLM API 보안 게이트웨이(Sentra), LLM 기반 런타임 보안 정책 자동화(KubeScribe)"
+        - "서비스 메시 환경의 mTLS 네트워크 성능 분석"
       tags: ["GPU", "eBPF", "Kubernetes", "LLM Security"]
     - role: "학부연구생"
       org: "BoanLab, 단국대학교"
       period: "2024.08 – 2025.02"
       bullets:
         - "분산 학습·GPU 관련 기초 연구 참여"
-        - "대규모 NLP 모델에서 병렬화 기법의 성능 분석 (ACK 2024)"
+        - "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
       tags: ["Distributed Training", "GPU"]
     - role: "학부연구생"
       org: "CIS Lab, 단국대학교"
@@ -120,7 +119,6 @@ publications:
       venue: "ASK 2025 (한국정보처리학회 춘계학술발표대회)"
       year: "2025"
       type: domestic
-      note: "2저자"
       korean: true
     - title: "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
       authors: ["Jaeyoung Lee", "Jaehyun Nam"]
@@ -179,8 +177,8 @@ projects:
       org: "BoanLab"
       desc: "Time-Slicing / MPS 로 GPU 를 공유할 때 생기는 간섭을 정량화하고, 어떤 파드가 얼마나 원인인지 귀속하는 관측 시스템."
       bullets:
-        - "eBPF 로 파드 단위 GPU 사용을 커널 수준에서 관측 (KCC 2026, 우수발표논문상)"
-        - "공유 모드별 간섭 정량화 및 원인 귀속 모델 (IEEE Access 심사 중)"
+        - "eBPF 로 파드 단위 GPU 사용을 커널 수준에서 관측"
+        - "공유 모드별 간섭 정량화 및 원인 귀속 모델"
       tags: ["GPU", "eBPF", "Time-Slicing", "MPS", "Kubernetes"]
 
 # 발표, 멘토링, 대외활동 등. 형식은 projects 와 동일

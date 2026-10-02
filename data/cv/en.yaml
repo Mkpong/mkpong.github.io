@@ -48,18 +48,17 @@ experience:
       org: "BoanLab, Dankook University"
       period: "Mar 2025 – Present"
       bullets:
-        - "Quantifying and attributing GPU interference under time-slicing / MPS sharing (gSonar, under review at IEEE Access)"
-        - "eBPF-based per-pod GPU observability and interference analysis (KCC 2026, Best Presentation Award)"
-        - "Sentra: a Kubernetes sidecar-based multi-layer security gateway for LLM APIs (MobiSec 2025, Best Poster Award)"
-        - "KubeScribe: LLM-driven automation of runtime security policies in cloud-native environments (ICTC 2025)"
-        - "Network performance analysis of mTLS in Kubernetes service meshes (ASK 2025)"
+        - "GPU sharing interference: quantifying and attributing interference under time-slicing / MPS, with eBPF-based per-pod observability (gSonar)"
+        - "GPU sharing platform: building a GPU sharing platform for interactive workloads on Kubernetes (gShare)"
+        - "LLM serving security: a sidecar-based security gateway for LLM APIs (Sentra) and LLM-driven runtime security policy automation (KubeScribe)"
+        - "Network performance analysis of mTLS in service meshes"
       tags: ["GPU", "eBPF", "Kubernetes", "LLM Security"]
     - role: "Undergraduate Researcher"
       org: "BoanLab, Dankook University"
       period: "Aug 2024 – Feb 2025"
       bullets:
         - "Introductory research on distributed training and GPUs"
-        - "Performance analysis of parallelization techniques for large NLP models (ACK 2024)"
+        - "Performance analysis of parallelization techniques for large NLP models"
       tags: ["Distributed Training", "GPU"]
     - role: "Undergraduate Researcher"
       org: "CIS Lab, Dankook University"
@@ -122,7 +121,6 @@ publications:
       venue: "ASK 2025 (KIPS Spring Conference)"
       year: "2025"
       type: domestic
-      note: "2nd author"
       korean: true
     - title: "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
       authors: ["Jaeyoung Lee", "Jaehyun Nam"]
@@ -182,8 +180,8 @@ projects:
       org: "BoanLab"
       desc: "An observability system that quantifies GPU interference under time-slicing / MPS sharing and attributes it to the responsible pods."
       bullets:
-        - "Per-pod GPU observation at the kernel level with eBPF (KCC 2026, Best Presentation Award)"
-        - "Interference quantification and attribution model across sharing modes (under review at IEEE Access)"
+        - "Per-pod GPU observation at the kernel level with eBPF"
+        - "Interference quantification and attribution model across sharing modes"
       tags: ["GPU", "eBPF", "Time-Slicing", "MPS", "Kubernetes"]
 
 # Talks, mentoring, community work. Same format as projects
