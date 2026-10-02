@@ -194,6 +194,12 @@ projects:
         - label: "GitHub"
           href: "https://github.com/boanlab/KloudChat"
           icon: github
+        - label: "Docs"
+          href: "https://boanlab.github.io/KloudChat/"
+          icon: book
+        - label: "Demo video"
+          href: "https://youtu.be/9qFMqiu2hg8"
+          icon: video
       desc: "A self-hosted generative AI workspace for chat, reports, slides, images, and audio/video. Responsible for system design, deployment, and server operations."
       bullets:
         - "Designed the split between the workspace (KloudChat) and the model/tool backend (KloudChat-LLM) behind a single gateway URL, so sign-in, history, and workspace stay up when the backend is down"

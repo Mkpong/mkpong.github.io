@@ -190,6 +190,12 @@ projects:
         - label: "GitHub"
           href: "https://github.com/boanlab/KloudChat"
           icon: github
+        - label: "가이드 문서"
+          href: "https://boanlab.github.io/KloudChat/"
+          icon: book
+        - label: "소개 영상"
+          href: "https://youtu.be/9qFMqiu2hg8"
+          icon: video
       desc: "채팅·보고서·슬라이드·이미지·오디오/비디오를 한곳에서 만드는 셀프 호스팅 생성형 AI 워크스페이스. 시스템 설계와 배포·서버 운영 담당."
       bullets:
         - "워크스페이스(KloudChat)와 모델·도구 백엔드(KloudChat-LLM)를 게이트웨이 URL 하나로 분리하는 구조 설계: 백엔드 장애 시에도 로그인·기록·워크스페이스는 유지"
