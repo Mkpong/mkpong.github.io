@@ -1,4 +1,4 @@
-# Jaeyoung — CV
+# Jaeyoung Lee — CV
 
 Hugo 로 만든 문서형 단일 페이지 이력서 사이트. 한국어(`/`)와 영어(`/en/`) 두 버전을 빌드하고, GitHub Actions 로 GitHub Pages 에 배포한다.
 

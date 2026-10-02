@@ -1,6 +1,6 @@
 baseURL = "https://mkpong.github.io/"
-title = "Jaeyoung"
-copyright = "© 2026 Jaeyoung"
+title = "Jaeyoung Lee"
+copyright = "© 2026 Jaeyoung Lee"
 
 # ---------- 다국어: / = 한국어, /en/ = 영어 ----------
 defaultContentLanguage = "ko"
@@ -18,16 +18,16 @@ disableKinds = ["taxonomy", "term", "section", "RSS"]
     label = "한국어"
     locale = "ko-KR"
     weight = 1
-    title = "Jaeyoung"
+    title = "Jaeyoung Lee"
     [languages.ko.params]
-      description = "AI 인프라를 공부하는 석사과정 학생 Jaeyoung 의 이력서"
+      description = "AI 인프라를 공부하는 석사과정 학생 Jaeyoung Lee 의 이력서"
   [languages.en]
     label = "English"
     locale = "en-US"
     weight = 2
-    title = "Jaeyoung"
+    title = "Jaeyoung Lee"
     [languages.en.params]
-      description = "CV of Jaeyoung, an M.S. student working on AI infrastructure"
+      description = "CV of Jaeyoung Lee, an M.S. student working on AI infrastructure"
 
 [outputs]
   home = ["HTML"]
@@ -38,7 +38,7 @@ disableKinds = ["taxonomy", "term", "section", "RSS"]
 
 [params]
   env = "production"
-  author = "Jaeyoung"
+  author = "Jaeyoung Lee"
   # 내용은 data/cv/ko.yaml, data/cv/en.yaml 에서 편집
   avatar = "https://github.com/mkpong.png"
   github = "https://github.com/mkpong"

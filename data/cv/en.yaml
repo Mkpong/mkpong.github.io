@@ -13,7 +13,7 @@ meta:
   present: "Present"
 
 profile:
-  name: "Jaeyoung"
+  name: "Jaeyoung Lee"
   headline: "M.S. student working on AI infrastructure"
   affiliation: "Dept. of AI Convergence, Dankook University · BoanLab"
   contact:
@@ -92,11 +92,13 @@ publications:
     in_korean: "in Korean"
   items:
     - title: "gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       venue: "IEEE Access"
       year: "2026"
       type: journal
       status: "Under review"
     - title: "Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석"
+      authors: ["Jaeyoung Lee", "Myeongdu Gim", "Jaehyun Nam"]
       title_en: "eBPF-Based Per-Pod Observation and Interference Analysis in Time-Sliced GPU Sharing Environments"
       venue: "KCC 2026 (Korea Computer Congress)"
       year: "2026"
@@ -104,15 +106,18 @@ publications:
       award: "Best Presentation Award"
       korean: true
     - title: "Sentra: A Kubernetes Sidecar-Based Multi-Layer Security Gateway for Protecting LLM APIs"
+      authors: ["Jaeyoung Lee", "ChanUk Park", "Jaehyun Nam"]
       venue: "MobiSec 2025"
       year: "2025"
       type: poster
       award: "KIISC Best Poster Award"
     - title: "KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       venue: "ICTC 2025"
       year: "2025"
       type: international
     - title: "쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석"
+      authors: ["Jaeyoung Lee", "Heesu Lee", "Jaehyun Nam"]
       title_en: "Network Performance Analysis of mTLS Adoption in Kubernetes-Based Service Mesh Environments"
       venue: "ASK 2025 (KIPS Spring Conference)"
       year: "2025"
@@ -120,6 +125,7 @@ publications:
       note: "2nd author"
       korean: true
     - title: "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       title_en: "Performance Analysis of Parallelization Techniques for Large-Scale NLP Models"
       venue: "ACK 2024 (KIPS Fall Conference)"
       year: "2024"

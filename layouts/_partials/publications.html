@@ -9,6 +9,11 @@
       {{- if .url }}</a>{{ end -}}
     </div>
     {{- with .title_en }}<div class="pub-title-alt">{{ . }}</div>{{ end }}
+    {{- with .authors }}
+    <div class="pub-authors">
+      {{- range $i, $a := . }}{{ if $i }}, {{ end }}{{ if eq $a site.Params.author }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end }}{{ end -}}
+    </div>
+    {{- end }}
     <div class="pub-meta">
       <span class="pub-venue">{{ .venue }}{{ if and .year (not (in .venue .year)) }}, {{ .year }}{{ end }}</span>
       {{- with .type }}{{ with index $labels . }}<span class="sep">·</span><span>{{ . }}</span>{{ end }}{{ end }}

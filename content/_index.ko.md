@@ -1,3 +1,3 @@
 ---
-title: "Jaeyoung — CV"
+title: "Jaeyoung Lee — CV"
 ---

@@ -13,7 +13,7 @@ meta:
   present: "현재"
 
 profile:
-  name: "Jaeyoung"
+  name: "Jaeyoung Lee"
   headline: "AI 인프라를 공부하는 석사과정 학생"
   affiliation: "단국대학교 일반대학원 인공지능융합학과 · BoanLab"
   contact:
@@ -92,32 +92,38 @@ publications:
     in_korean: ""            # 한국어판에서는 표시 안 함
   items:
     - title: "gSonar: Quantifying and Attributing GPU Interference under Time-Slicing and MPS"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       venue: "IEEE Access"
       year: "2026"
       type: journal
       status: "심사 중"
     - title: "Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석"
+      authors: ["Jaeyoung Lee", "Myeongdu Gim", "Jaehyun Nam"]
       venue: "KCC 2026 (한국컴퓨터종합학술대회)"
       year: "2026"
       type: domestic
       award: "우수발표논문상"
       korean: true
     - title: "Sentra: A Kubernetes Sidecar-Based Multi-Layer Security Gateway for Protecting LLM APIs"
+      authors: ["Jaeyoung Lee", "ChanUk Park", "Jaehyun Nam"]
       venue: "MobiSec 2025"
       year: "2025"
       type: poster
       award: "KIISC Best Poster Award"
     - title: "KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       venue: "ICTC 2025"
       year: "2025"
       type: international
     - title: "쿠버네티스 기반 서비스 메시 환경에서의 mTLS 적용에 따른 네트워크 성능 분석"
+      authors: ["Jaeyoung Lee", "Heesu Lee", "Jaehyun Nam"]
       venue: "ASK 2025 (한국정보처리학회 춘계학술발표대회)"
       year: "2025"
       type: domestic
       note: "2저자"
       korean: true
     - title: "대규모 NLP 모델에서 병렬화 기법의 성능 분석"
+      authors: ["Jaeyoung Lee", "Jaehyun Nam"]
       venue: "ACK 2024 (한국정보처리학회 추계학술발표대회)"
       year: "2024"
       type: domestic
