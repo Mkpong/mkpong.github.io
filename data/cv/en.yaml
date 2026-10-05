@@ -154,6 +154,9 @@ awards:
       org: "2024 SW-Centered University Digital Competition, SW Track · Software-Centered University Council"
       year: "2024"
       desc: "Finalist · Team 단컴한 인생 · Project Ghost Band"
+    - name: "Excellence Award"
+      org: "2024 AI Idea Competition in All Fields · Bachelor's–Master's Linked ICT Core Talent Program, Dankook University"
+      year: "2024"
 
 # Hidden when empty. Format:
 #   - title: "Project name"
