@@ -157,6 +157,7 @@ awards:
     - name: "Excellence Award"
       org: "2024 AI Idea Competition in All Fields · Bachelor's–Master's Linked ICT Core Talent Program, Dankook University"
       year: "2024"
+      desc: "Team BAG · Project Voice Phishing Detection and Response Guide (GAN-based deepfake voice detection)"
 
 # Hidden when empty. Format:
 #   - title: "Project name"
