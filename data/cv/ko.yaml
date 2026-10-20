@@ -104,7 +104,7 @@ publications:
       venue: "ACK 2026 (한국정보처리학회 추계학술발표대회)"
       year: "2026"
       type: domestic
-      status: "review"
+      award: "우수논문상"
       korean: true
     - title: "Time-Slicing GPU 공유 환경에서 eBPF 기반 파드 단위 관측 및 간섭 분석"
       authors: ["Jaeyoung Lee", "Myeongdu Gim", "Jaehyun Nam"]
@@ -140,6 +140,9 @@ publications:
 awards:
   title: "Awards"
   items:
+    - name: "우수논문상"
+      org: "ACK 2026 · 한국정보처리학회"
+      year: "2026"
     - name: "우수발표논문상"
       org: "KCC 2026 · 한국정보과학회"
       year: "2026"
